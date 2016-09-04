@@ -1,0 +1,8 @@
+*.DS_Store
+composer.lock
+vendor
+phpunit.xml
+tests/log
+build
+clover.xml
+.idea
