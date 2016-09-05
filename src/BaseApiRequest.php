@@ -44,13 +44,18 @@ abstract class BaseApiRequest
     protected function preparedRequest()
     {
         if ($this->configuration->getRequestMode() == 'json') {
-            $request = new JsonRequest($this->configuration, $this->client, 'createTransactionRequest');
+            $request = new JsonRequest($this->configuration, $this->client, $this->getType());
         } else {
-            $request = new XmlRequest($this->configuration, $this->client, 'createTransactionRequest');
+            $request = new XmlRequest($this->configuration, $this->client, $this->getType());
         }
 
         $request->addDataType($this->merchantAuthentication);
         return $request;
+    }
+
+    public function getType()
+    {
+        return lcfirst((new \ReflectionClass($this))->getShortName());
     }
 
     // @todo make ApiRequestInterface.

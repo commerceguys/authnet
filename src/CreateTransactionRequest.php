@@ -26,6 +26,12 @@ class CreateTransactionRequest extends BaseApiRequest
         $this->transactionRequest = $transactionRequest;
     }
 
+    public function getType()
+    {
+        return 'createTransactionRequest';
+    }
+
+
     public function execute()
     {
         $request = $this->preparedRequest();

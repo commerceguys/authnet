@@ -67,6 +67,10 @@ class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
         $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
         $response = $request->execute();
 
+        // This randomly fails. Maybe because we try to capture too soon?
+        // Try sleeping for a little bit.
+        sleep(2);
+
         // XML
         $request = new CreateTransactionRequest($this->configuration, $this->client);
         $request->setTransactionRequest(new TransactionRequest([
