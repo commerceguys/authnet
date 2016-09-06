@@ -23,6 +23,8 @@ class XmlRequest extends BaseRequest
         $xml = @new \SimpleXMLElement('<' . $this->type . ' xmlns="' . self::XSD . '"/>');
         $this->arrayToXml($this->data, $xml);
 
+        ($xml->asXML('./request.xml'));
+
         return $xml->asXML();
     }
 

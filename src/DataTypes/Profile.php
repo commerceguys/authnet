@@ -4,8 +4,8 @@ namespace mglaman\AuthNet\DataTypes;
 
 class Profile extends BaseDataType
 {
-    public function getType()
+    public function addPaymentProfile(PaymentProfile $profile)
     {
-        return 'profile';
+        $this->properties['paymentProfiles'] = $profile->toArray();
     }
 }

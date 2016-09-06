@@ -6,7 +6,7 @@ abstract class BaseDataType implements DataTypeInterface
 {
     protected $properties;
 
-    public function __construct(array $values)
+    public function __construct(array $values = [])
     {
         foreach ($values as $name => $value) {
             $this->$name = $value;
@@ -16,6 +16,11 @@ abstract class BaseDataType implements DataTypeInterface
     public function toArray()
     {
         return $this->properties;
+    }
+
+    public function getType()
+    {
+        return lcfirst((new \ReflectionClass($this))->getShortName());
     }
 
     public function __set($name, $value)

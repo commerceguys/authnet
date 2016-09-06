@@ -11,11 +11,6 @@ class TransactionRequest extends BaseDataType
     const REFUND = 'refundTransaction';
     const VOID = 'voidTransaction';
 
-    public function getType()
-    {
-        return 'transactionRequest';
-    }
-
     public function addPayment(CreditCard $creditCard)
     {
         $this->properties['payment'][$creditCard->getType()] = $creditCard->toArray();
