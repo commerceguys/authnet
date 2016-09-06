@@ -2,6 +2,7 @@
 
 namespace mglaman\AuthNet\Response;
 
+use mglaman\AuthNet\DataTypes\Message;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
 /**
@@ -44,12 +45,27 @@ abstract class BaseResponse implements ResponseInterface
         return $this->contents->messages->resultCode;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessages()
     {
         if (is_array($this->contents->messages->message)) {
-            return $this->contents->messages->message;
+            $messages = [];
+            foreach ($this->contents->messages->message as $item) {
+                $messages[] = new Message([
+                  'code' => $item->code,
+                  'text' => $item->text,
+                ]);
+            }
+            return $messages;
         } else {
-            return [$this->contents->messages->message];
+            return [
+              new Message([
+                  'code' => $this->contents->messages->message->code,
+                  'text' => $this->contents->messages->message->text,
+              ])
+            ];
         }
     }
 

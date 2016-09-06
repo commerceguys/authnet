@@ -17,7 +17,7 @@ interface ResponseInterface
     public function getResultCode();
 
     /**
-     * @return array
+     * @return \mglaman\AuthNet\DataTypes\Message[]
      */
     public function getMessages();
 

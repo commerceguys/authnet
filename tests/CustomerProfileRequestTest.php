@@ -41,8 +41,8 @@ class CustomerProfileRequestTest extends \PHPUnit_Framework_TestCase
         $request = new GetCustomerProfileIdsRequest($this->configuration, $this->client);
         $response = $request->execute();
         $this->assertTrue(isset($response->ids));
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
     }
 
@@ -81,8 +81,8 @@ class CustomerProfileRequestTest extends \PHPUnit_Framework_TestCase
 
         $request = new GetCustomerProfileRequest($this->configuration, $this->client, $response->customerProfileId);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
         $this->assertTrue(isset($response->profile));
 
@@ -93,8 +93,8 @@ class CustomerProfileRequestTest extends \PHPUnit_Framework_TestCase
         ]);
         $request = new UpdateCustomerProfileRequest($this->configuration, $this->client, $profile);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
 
         $request = new DeleteCustomerProfileRequest(
@@ -103,8 +103,8 @@ class CustomerProfileRequestTest extends \PHPUnit_Framework_TestCase
             $customerProfileId
         );
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
 
     }

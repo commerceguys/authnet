@@ -39,8 +39,8 @@ class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
         $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
         // @todo Test JSON, it's not working.
     }
@@ -53,8 +53,8 @@ class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
         $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
         // @todo Test JSON, it's not working.
     }
@@ -80,8 +80,8 @@ class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
         ]));
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
     }
 
@@ -167,8 +167,8 @@ class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
 
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
     }
 

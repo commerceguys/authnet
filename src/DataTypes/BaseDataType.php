@@ -8,9 +8,20 @@ abstract class BaseDataType implements DataTypeInterface
 
     public function __construct(array $values = [])
     {
+        $this->validate($values);
         foreach ($values as $name => $value) {
             $this->$name = $value;
         }
+    }
+
+    /**
+     * Allows child classes to validate incoming values.
+     *
+     * @param array $values
+     */
+    protected function validate(array $values)
+    {
+
     }
 
     public function toArray()
