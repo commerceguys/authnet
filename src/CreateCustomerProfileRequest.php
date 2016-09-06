@@ -4,6 +4,7 @@ namespace mglaman\AuthNet;
 
 use GuzzleHttp\Client;
 use mglaman\AuthNet\DataTypes\Profile;
+use mglaman\AuthNet\Request\RequestInterface;
 
 class CreateCustomerProfileRequest extends BaseApiRequest
 {
@@ -43,12 +44,9 @@ class CreateCustomerProfileRequest extends BaseApiRequest
         $this->validationMode = $validationMode;
     }
 
-    public function execute()
+    protected function attachData(RequestInterface $request)
     {
-        $request = $this->preparedRequest();
         $request->addDataType($this->profile);
         $request->addData('validationMode', $this->validationMode);
-        $response = $request->sendRequest();
-        return $response;
     }
 }

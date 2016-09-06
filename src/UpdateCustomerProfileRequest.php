@@ -4,6 +4,7 @@ namespace mglaman\AuthNet;
 
 use GuzzleHttp\Client;
 use mglaman\AuthNet\DataTypes\Profile;
+use mglaman\AuthNet\Request\RequestInterface;
 
 /**
  * Class UpdateCustomerProfileRequest
@@ -23,11 +24,8 @@ class UpdateCustomerProfileRequest extends BaseApiRequest
         $this->profile = $profile;
     }
 
-    public function execute()
+    protected function attachData(RequestInterface $request)
     {
-        $request = $this->preparedRequest();
         $request->addDataType($this->profile);
-        $response = $request->sendRequest();
-        return $response;
     }
 }

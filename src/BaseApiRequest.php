@@ -5,6 +5,7 @@ namespace mglaman\AuthNet;
 use GuzzleHttp\Client;
 use mglaman\AuthNet\DataTypes\MerchantAuthentication;
 use mglaman\AuthNet\Request\JsonRequest;
+use mglaman\AuthNet\Request\RequestInterface;
 use mglaman\AuthNet\Request\XmlRequest;
 use mglaman\AuthNet\Response\JsonResponse;
 
@@ -38,10 +39,21 @@ abstract class BaseApiRequest
         ]);
     }
 
+    public function getType()
+    {
+        return lcfirst((new \ReflectionClass($this))->getShortName());
+    }
+
     /**
-     * @return \mglaman\AuthNet\Request\RequestInterface
+     * Allows child classes to attach data to the request.
+     *
+     * @param \mglaman\AuthNet\Request\RequestInterface $request
+     * @return RequestInterface
      */
-    protected function preparedRequest()
+    abstract protected function attachData(RequestInterface $request);
+
+    // @todo make ApiRequestInterface.
+    public function execute()
     {
         if ($this->configuration->getRequestMode() == 'json') {
             $request = new JsonRequest($this->configuration, $this->client, $this->getType());
@@ -50,14 +62,10 @@ abstract class BaseApiRequest
         }
 
         $request->addDataType($this->merchantAuthentication);
-        return $request;
-    }
 
-    public function getType()
-    {
-        return lcfirst((new \ReflectionClass($this))->getShortName());
-    }
+        $this->attachData($request);
 
-    // @todo make ApiRequestInterface.
-    abstract public function execute();
+        $response = $request->sendRequest();
+        return $response;
+    }
 }

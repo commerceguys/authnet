@@ -21,7 +21,6 @@ abstract class BaseDataType implements DataTypeInterface
      */
     protected function validate(array $values)
     {
-
     }
 
     public function toArray()

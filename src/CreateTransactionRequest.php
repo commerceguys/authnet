@@ -4,6 +4,7 @@ namespace mglaman\AuthNet;
 
 use GuzzleHttp\Client;
 use mglaman\AuthNet\DataTypes\TransactionRequest;
+use mglaman\AuthNet\Request\RequestInterface;
 
 class CreateTransactionRequest extends BaseApiRequest
 {
@@ -31,13 +32,9 @@ class CreateTransactionRequest extends BaseApiRequest
         return 'createTransactionRequest';
     }
 
-
-    public function execute()
+    protected function attachData(RequestInterface $request)
     {
-        $request = $this->preparedRequest();
         $request->addData('refId', 'ref' . time());
         $request->addDataType($this->transactionRequest);
-        $response = $request->sendRequest();
-        return $response;
     }
 }

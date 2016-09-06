@@ -4,7 +4,7 @@ namespace mglaman\AuthNet;
 
 use mglaman\AuthNet\Request\RequestInterface;
 
-class GetCustomerProfileIdsRequest extends BaseApiRequest
+class CreateCustomerPaymentProfileRequest extends BaseApiRequest
 {
     protected function attachData(RequestInterface $request)
     {

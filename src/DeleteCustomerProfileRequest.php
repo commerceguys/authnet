@@ -3,6 +3,7 @@
 namespace mglaman\AuthNet;
 
 use GuzzleHttp\Client;
+use mglaman\AuthNet\Request\RequestInterface;
 
 class DeleteCustomerProfileRequest extends BaseApiRequest
 {
@@ -17,12 +18,8 @@ class DeleteCustomerProfileRequest extends BaseApiRequest
         $this->customerProfileId = $customerProfileId;
     }
 
-
-    public function execute()
+    protected function attachData(RequestInterface $request)
     {
-        $request = $this->preparedRequest();
         $request->addData('customerProfileId', $this->customerProfileId);
-        $response = $request->sendRequest();
-        return $response;
     }
 }
