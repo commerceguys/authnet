@@ -1,4 +1,4 @@
-# Authorize.net PHP SDK [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mglaman/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mglaman/authnet/?branch=master) [![Build Status](https://travis-ci.org/mglaman/authnet.svg?branch=master)](https://travis-ci.org/mglaman/authnet) [![Code Coverage](https://scrutinizer-ci.com/g/mglaman/authnet/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mglaman/authnet/?branch=master)
+# Authorize.net PHP SDK [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master) [![Build Status](https://travis-ci.org/commerceguys/authnet.svg?branch=master)](https://travis-ci.org/commerceguys/authnet) [![Code Coverage](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master)
 
 A PHP SDK for Authorize.net, using Guzzle.
 

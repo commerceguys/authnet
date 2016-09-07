@@ -1,9 +1,9 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\Request\RequestInterface;
 
 class DeleteCustomerProfileRequest extends BaseApiRequest
 {

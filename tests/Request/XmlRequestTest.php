@@ -1,16 +1,16 @@
 <?php
 
-namespace mglaman\AuthNet\Tests\Request;
+namespace CommerceGuys\AuthNet\Tests\Request;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\Configuration;
-use mglaman\AuthNet\DataTypes\MerchantAuthentication;
-use mglaman\AuthNet\Request\XmlRequest;
+use CommerceGuys\AuthNet\Configuration;
+use CommerceGuys\AuthNet\DataTypes\MerchantAuthentication;
+use CommerceGuys\AuthNet\Request\XmlRequest;
 
 class XmlRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \mglaman\AuthNet\Configuration
+     * @var \CommerceGuys\AuthNet\Configuration
      */
     protected $configuration;
     /**

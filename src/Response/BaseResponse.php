@@ -1,13 +1,13 @@
 <?php
 
-namespace mglaman\AuthNet\Response;
+namespace CommerceGuys\AuthNet\Response;
 
-use mglaman\AuthNet\DataTypes\Message;
+use CommerceGuys\AuthNet\DataTypes\Message;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
 /**
  * Class BaseResponse
- * @package mglaman\AuthNet\Response
+ * @package CommerceGuys\AuthNet\Response
  */
 abstract class BaseResponse implements ResponseInterface
 {

@@ -1,5 +1,5 @@
 {
-    "name": "mglaman/authnet",
+    "name": "commerceguys/authnet",
     "description": "PHP SDK for Authorize.Net API",
     "type": "library",
     "require": {
@@ -22,12 +22,12 @@
     ],
     "autoload": {
       "psr-4": {
-        "mglaman\\AuthNet\\": "src"
+        "CommerceGuys\\AuthNet\\": "src"
       }
     },
     "autoload-dev": {
         "psr-4": {
-            "mglaman\\AuthNet\\Tests\\": "tests"
+            "CommerceGuys\\AuthNet\\Tests\\": "tests"
         }
     },
     "scripts": {

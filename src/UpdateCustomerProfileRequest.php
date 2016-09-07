@@ -1,10 +1,10 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\DataTypes\Profile;
-use mglaman\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\DataTypes\Profile;
+use CommerceGuys\AuthNet\Request\RequestInterface;
 
 /**
  * Class UpdateCustomerProfileRequest

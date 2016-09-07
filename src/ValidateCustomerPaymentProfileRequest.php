@@ -1,8 +1,8 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
-use mglaman\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\Request\RequestInterface;
 
 class ValidateCustomerPaymentProfileRequest extends BaseApiRequest
 {

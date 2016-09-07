@@ -1,15 +1,15 @@
 <?php
 
-namespace mglaman\AuthNet\Tests;
+namespace CommerceGuys\AuthNet\Tests;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\Configuration;
-use mglaman\AuthNet\RequestFactory;
+use CommerceGuys\AuthNet\Configuration;
+use CommerceGuys\AuthNet\RequestFactory;
 
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \mglaman\AuthNet\Configuration
+     * @var \CommerceGuys\AuthNet\Configuration
      */
     protected $configuration;
     /**
@@ -18,7 +18,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     protected $client;
 
     /**
-     * @var \mglaman\AuthNet\RequestFactory
+     * @var \CommerceGuys\AuthNet\RequestFactory
      */
     protected $requestFactory;
 

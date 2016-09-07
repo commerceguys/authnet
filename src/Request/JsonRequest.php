@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\Request;
+namespace CommerceGuys\AuthNet\Request;
 
 class JsonRequest extends BaseRequest
 {

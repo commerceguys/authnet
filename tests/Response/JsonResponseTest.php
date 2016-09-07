@@ -1,9 +1,9 @@
 <?php
 
-namespace mglaman\AuthNet\Tests\Response;
+namespace CommerceGuys\AuthNet\Tests\Response;
 
 use GuzzleHttp\Psr7\Response;
-use mglaman\AuthNet\Response\JsonResponse;
+use CommerceGuys\AuthNet\Response\JsonResponse;
 
 class JsonResponseTest extends \PHPUnit_Framework_TestCase
 {

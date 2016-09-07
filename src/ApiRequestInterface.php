@@ -1,11 +1,11 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 interface ApiRequestInterface
 {
     /**
-     * @return \mglaman\AuthNet\Response\ResponseInterface
+     * @return \CommerceGuys\AuthNet\Response\ResponseInterface
      */
     public function execute();
 }

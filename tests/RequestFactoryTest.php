@@ -1,8 +1,8 @@
 <?php
 
-namespace mglaman\AuthNet\Tests;
+namespace CommerceGuys\AuthNet\Tests;
 
-use mglaman\AuthNet\CreateTransactionRequest;
+use CommerceGuys\AuthNet\CreateTransactionRequest;
 
 class RequestFactoryTest extends TestBase
 {

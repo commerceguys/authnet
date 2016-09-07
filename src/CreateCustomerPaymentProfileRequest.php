@@ -1,14 +1,14 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
-use mglaman\AuthNet\DataTypes\PaymentProfile;
-use mglaman\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\DataTypes\PaymentProfile;
+use CommerceGuys\AuthNet\Request\RequestInterface;
 
 class CreateCustomerPaymentProfileRequest extends BaseApiRequest
 {
     /**
-     * @var \mglaman\AuthNet\DataTypes\PaymentProfile
+     * @var \CommerceGuys\AuthNet\DataTypes\PaymentProfile
      */
     protected $paymentProfile;
 

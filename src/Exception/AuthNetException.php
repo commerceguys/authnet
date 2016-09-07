@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\Exception;
+namespace CommerceGuys\AuthNet\Exception;
 
 /**
  * Exception for Authorize.net SDK.

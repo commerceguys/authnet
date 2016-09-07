@@ -1,10 +1,10 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\DataTypes\TransactionRequest;
-use mglaman\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
+use CommerceGuys\AuthNet\Request\RequestInterface;
 
 class CreateTransactionRequest extends BaseApiRequest
 {
@@ -20,7 +20,7 @@ class CreateTransactionRequest extends BaseApiRequest
     }
 
     /**
-     * @param \mglaman\AuthNet\DataTypes\TransactionRequest $transactionRequest
+     * @param \CommerceGuys\AuthNet\DataTypes\TransactionRequest $transactionRequest
      * @return $this
      */
     public function setTransactionRequest($transactionRequest)

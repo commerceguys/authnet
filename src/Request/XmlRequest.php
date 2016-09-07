@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\Request;
+namespace CommerceGuys\AuthNet\Request;
 
 class XmlRequest extends BaseRequest
 {
@@ -22,9 +22,6 @@ class XmlRequest extends BaseRequest
         // The Authorize.net API does not accept an absolute URL for XMLNS.
         $xml = @new \SimpleXMLElement('<' . $this->type . ' xmlns="' . self::XSD . '"/>');
         $this->arrayToXml($this->data, $xml);
-
-        ($xml->asXML('./request.xml'));
-
         return $xml->asXML();
     }
 

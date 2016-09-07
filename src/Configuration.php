@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 class Configuration
 {

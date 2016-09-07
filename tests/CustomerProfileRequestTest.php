@@ -1,16 +1,16 @@
 <?php
 
-namespace mglaman\AuthNet\Tests;
+namespace CommerceGuys\AuthNet\Tests;
 
-use mglaman\AuthNet\CreateCustomerProfileRequest;
-use mglaman\AuthNet\DataTypes\BillTo;
-use mglaman\AuthNet\DataTypes\CreditCard;
-use mglaman\AuthNet\DataTypes\PaymentProfile;
-use mglaman\AuthNet\DataTypes\Profile;
-use mglaman\AuthNet\DeleteCustomerProfileRequest;
-use mglaman\AuthNet\GetCustomerProfileIdsRequest;
-use mglaman\AuthNet\GetCustomerProfileRequest;
-use mglaman\AuthNet\UpdateCustomerProfileRequest;
+use CommerceGuys\AuthNet\CreateCustomerProfileRequest;
+use CommerceGuys\AuthNet\DataTypes\BillTo;
+use CommerceGuys\AuthNet\DataTypes\CreditCard;
+use CommerceGuys\AuthNet\DataTypes\PaymentProfile;
+use CommerceGuys\AuthNet\DataTypes\Profile;
+use CommerceGuys\AuthNet\DeleteCustomerProfileRequest;
+use CommerceGuys\AuthNet\GetCustomerProfileIdsRequest;
+use CommerceGuys\AuthNet\GetCustomerProfileRequest;
+use CommerceGuys\AuthNet\UpdateCustomerProfileRequest;
 
 class CustomerProfileRequestTest extends TestBase
 {

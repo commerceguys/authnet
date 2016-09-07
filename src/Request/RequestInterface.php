@@ -1,12 +1,12 @@
 <?php
 
-namespace mglaman\AuthNet\Request;
+namespace CommerceGuys\AuthNet\Request;
 
-use mglaman\AuthNet\DataTypes\DataTypeInterface;
+use CommerceGuys\AuthNet\DataTypes\DataTypeInterface;
 
 /**
  * Interface AuthNetRequestInterface
- * @package mglaman\AuthNet\Request
+ * @package CommerceGuys\AuthNet\Request
  */
 interface RequestInterface
 {
@@ -33,8 +33,8 @@ interface RequestInterface
     public function addData($name, $value);
 
     /**
-     * @return \mglaman\AuthNet\Response\ResponseInterface
-     * @throws \mglaman\AuthNet\Exception\AuthNetException
+     * @return \CommerceGuys\AuthNet\Response\ResponseInterface
+     * @throws \CommerceGuys\AuthNet\Exception\AuthNetException
      */
     public function sendRequest();
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace mglaman\AuthNet\Tests;
+namespace CommerceGuys\AuthNet\Tests;
 
-use mglaman\AuthNet\CreateTransactionRequest;
-use mglaman\AuthNet\DataTypes\CreditCard;
-use mglaman\AuthNet\DataTypes\Order;
-use mglaman\AuthNet\DataTypes\TransactionRequest;
+use CommerceGuys\AuthNet\CreateTransactionRequest;
+use CommerceGuys\AuthNet\DataTypes\CreditCard;
+use CommerceGuys\AuthNet\DataTypes\Order;
+use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
 
 class CreateTransactionRequestTest extends TestBase
 {
@@ -168,7 +168,7 @@ class CreateTransactionRequestTest extends TestBase
 
     /**
      * @param $type
-     * @return \mglaman\AuthNet\DataTypes\TransactionRequest
+     * @return \CommerceGuys\AuthNet\DataTypes\TransactionRequest
      */
     protected function createChargableTransactionRequest($type)
     {

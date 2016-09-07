@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\DataTypes;
+namespace CommerceGuys\AuthNet\DataTypes;
 
 abstract class BaseDataType implements DataTypeInterface
 {

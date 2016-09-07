@@ -1,18 +1,18 @@
 <?php
 
-namespace mglaman\AuthNet\Request;
+namespace CommerceGuys\AuthNet\Request;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use mglaman\AuthNet\Configuration;
-use mglaman\AuthNet\DataTypes\DataTypeInterface;
-use mglaman\AuthNet\Exception\AuthNetException;
-use mglaman\AuthNet\Response\JsonResponse;
-use mglaman\AuthNet\Response\XmlResponse;
+use CommerceGuys\AuthNet\Configuration;
+use CommerceGuys\AuthNet\DataTypes\DataTypeInterface;
+use CommerceGuys\AuthNet\Exception\AuthNetException;
+use CommerceGuys\AuthNet\Response\JsonResponse;
+use CommerceGuys\AuthNet\Response\XmlResponse;
 
 /**
  * Class AuthNetRequest
- * @package mglaman\AuthNet\Request
+ * @package CommerceGuys\AuthNet\Request
  */
 abstract class BaseRequest implements RequestInterface
 {
@@ -21,7 +21,7 @@ abstract class BaseRequest implements RequestInterface
     const LIVE = 'https://api.authorize.net/xml/v1/request.api';
 
     /**
-     * @var \mglaman\AuthNet\Configuration
+     * @var \CommerceGuys\AuthNet\Configuration
      */
     protected $configuration;
 
@@ -43,7 +43,7 @@ abstract class BaseRequest implements RequestInterface
     /**
      * BaseRequest constructor.
      *
-     * @param \mglaman\AuthNet\Configuration $configuration
+     * @param \CommerceGuys\AuthNet\Configuration $configuration
      * @param \GuzzleHttp\Client $client
      * @param string $type
      * @param array $data
@@ -71,8 +71,8 @@ abstract class BaseRequest implements RequestInterface
     }
 
     /**
-     * @return \mglaman\AuthNet\Response\ResponseInterface
-     * @throws \mglaman\AuthNet\Exception\AuthNetException
+     * @return \CommerceGuys\AuthNet\Response\ResponseInterface
+     * @throws \CommerceGuys\AuthNet\Exception\AuthNetException
      */
     public function sendRequest()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\Response;
+namespace CommerceGuys\AuthNet\Response;
 
 interface ResponseInterface
 {
@@ -17,7 +17,7 @@ interface ResponseInterface
     public function getResultCode();
 
     /**
-     * @return \mglaman\AuthNet\DataTypes\Message[]
+     * @return \CommerceGuys\AuthNet\DataTypes\Message[]
      */
     public function getMessages();
 

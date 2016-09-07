@@ -1,8 +1,8 @@
 <?php
 
-namespace mglaman\AuthNet\Tests;
+namespace CommerceGuys\AuthNet\Tests;
 
-use mglaman\AuthNet\Configuration;
+use CommerceGuys\AuthNet\Configuration;
 
 /**
  * Tests the configuration class.

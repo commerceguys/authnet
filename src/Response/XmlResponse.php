@@ -1,8 +1,8 @@
 <?php
 
-namespace mglaman\AuthNet\Response;
+namespace CommerceGuys\AuthNet\Response;
 
-use mglaman\AuthNet\Request\XmlRequest;
+use CommerceGuys\AuthNet\Request\XmlRequest;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
 class XmlResponse extends BaseResponse

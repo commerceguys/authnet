@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\DataTypes;
+namespace CommerceGuys\AuthNet\DataTypes;
 
 // @todo If the billTo element is not before payment, an error occurs.
 class PaymentProfile extends BaseDataType

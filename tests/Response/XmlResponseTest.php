@@ -1,10 +1,10 @@
 <?php
 
-namespace mglaman\AuthNet\Tests\Response;
+namespace CommerceGuys\AuthNet\Tests\Response;
 
 use GuzzleHttp\Psr7\Response;
-use mglaman\AuthNet\Response\JsonResponse;
-use mglaman\AuthNet\Response\XmlResponse;
+use CommerceGuys\AuthNet\Response\JsonResponse;
+use CommerceGuys\AuthNet\Response\XmlResponse;
 
 class XmlResponseTest extends \PHPUnit_Framework_TestCase
 {

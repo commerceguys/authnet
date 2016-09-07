@@ -1,18 +1,18 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use mglaman\AuthNet\DataTypes\MerchantAuthentication;
-use mglaman\AuthNet\Request\JsonRequest;
-use mglaman\AuthNet\Request\RequestInterface;
-use mglaman\AuthNet\Request\XmlRequest;
-use mglaman\AuthNet\Response\JsonResponse;
+use CommerceGuys\AuthNet\DataTypes\MerchantAuthentication;
+use CommerceGuys\AuthNet\Request\JsonRequest;
+use CommerceGuys\AuthNet\Request\RequestInterface;
+use CommerceGuys\AuthNet\Request\XmlRequest;
+use CommerceGuys\AuthNet\Response\JsonResponse;
 
 abstract class BaseApiRequest implements ApiRequestInterface
 {
     /**
-     * @var \mglaman\AuthNet\Configuration
+     * @var \CommerceGuys\AuthNet\Configuration
      */
     protected $configuration;
 
@@ -26,7 +26,7 @@ abstract class BaseApiRequest implements ApiRequestInterface
     /**
      * BaseRequest constructor.
      *
-     * @param \mglaman\AuthNet\Configuration $configuration
+     * @param \CommerceGuys\AuthNet\Configuration $configuration
      * @param \GuzzleHttp\Client $client
      */
     public function __construct(Configuration $configuration, Client $client)
@@ -47,7 +47,7 @@ abstract class BaseApiRequest implements ApiRequestInterface
     /**
      * Allows child classes to attach data to the request.
      *
-     * @param \mglaman\AuthNet\Request\RequestInterface $request
+     * @param \CommerceGuys\AuthNet\Request\RequestInterface $request
      * @return RequestInterface
      */
     abstract protected function attachData(RequestInterface $request);

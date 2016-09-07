@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet;
+namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
 
@@ -10,7 +10,7 @@ use GuzzleHttp\Client;
 class RequestFactory
 {
     /**
-     * @var \mglaman\AuthNet\Configuration
+     * @var \CommerceGuys\AuthNet\Configuration
      */
     protected $configuration;
 
@@ -22,7 +22,7 @@ class RequestFactory
     /**
      * BaseRequest constructor.
      *
-     * @param \mglaman\AuthNet\Configuration $configuration
+     * @param \CommerceGuys\AuthNet\Configuration $configuration
      * @param \GuzzleHttp\Client $client
      */
     public function __construct(Configuration $configuration, Client $client)

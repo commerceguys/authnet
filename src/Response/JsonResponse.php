@@ -1,6 +1,6 @@
 <?php
 
-namespace mglaman\AuthNet\Response;
+namespace CommerceGuys\AuthNet\Response;
 
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
