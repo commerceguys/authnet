@@ -2,34 +2,13 @@
 
 namespace mglaman\AuthNet\Tests;
 
-use GuzzleHttp\Client;
-use mglaman\AuthNet\Configuration;
 use mglaman\AuthNet\CreateTransactionRequest;
 use mglaman\AuthNet\DataTypes\CreditCard;
 use mglaman\AuthNet\DataTypes\Order;
 use mglaman\AuthNet\DataTypes\TransactionRequest;
 
-class CreateTransactionRequestTest extends \PHPUnit_Framework_TestCase
+class CreateTransactionRequestTest extends TestBase
 {
-    /**
-     * @var \mglaman\AuthNet\Configuration
-     */
-    protected $configuration;
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->configuration = new Configuration([
-          'api_login' => AUTHORIZENET_API_LOGIN_ID,
-          'transaction_key' => AUTHORIZENET_TRANSACTION_KEY,
-          'sandbox' => true,
-        ]);
-        $this->client = new Client();
-    }
 
     public function testAuthCaptureTransaction()
     {

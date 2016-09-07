@@ -2,8 +2,6 @@
 
 namespace mglaman\AuthNet\Tests;
 
-use GuzzleHttp\Client;
-use mglaman\AuthNet\Configuration;
 use mglaman\AuthNet\CreateCustomerProfileRequest;
 use mglaman\AuthNet\DataTypes\BillTo;
 use mglaman\AuthNet\DataTypes\CreditCard;
@@ -14,27 +12,8 @@ use mglaman\AuthNet\GetCustomerProfileIdsRequest;
 use mglaman\AuthNet\GetCustomerProfileRequest;
 use mglaman\AuthNet\UpdateCustomerProfileRequest;
 
-class CustomerProfileRequestTest extends \PHPUnit_Framework_TestCase
+class CustomerProfileRequestTest extends TestBase
 {
-    /**
-     * @var \mglaman\AuthNet\Configuration
-     */
-    protected $configuration;
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    protected $client;
-
-    protected function setUp()
-    {
-        parent::setUp();
-        $this->configuration = new Configuration([
-          'api_login' => AUTHORIZENET_API_LOGIN_ID,
-          'transaction_key' => AUTHORIZENET_TRANSACTION_KEY,
-          'sandbox' => true,
-        ]);
-        $this->client = new Client();
-    }
 
     public function testGetCustomerProfileIdsRequest()
     {
