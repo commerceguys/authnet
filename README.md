@@ -1,16 +1,31 @@
-# Authorize.net PHP SDK [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mglaman/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mglaman/authnet/?branch=master) [![Build Status](https://travis-ci.org/mglaman/authnet.svg?branch=master)](https://travis-ci.org/mglaman/authnet)
+# Authorize.net PHP SDK [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mglaman/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mglaman/authnet/?branch=master) [![Build Status](https://travis-ci.org/mglaman/authnet.svg?branch=master)](https://travis-ci.org/mglaman/authnet) [![Code Coverage](https://scrutinizer-ci.com/g/mglaman/authnet/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/mglaman/authnet/?branch=master)
 
-A Guzzle and PSR-4 SDK for the Authorize.net API.
+A PHP SDK for Authorize.net, using Guzzle.
 
 ## Why not the official Authorize.net PHP SDK?
 
-* Currently https://github.com/AuthorizeNet/sdk-php is licensed under a proprietary license
-* It is not PSR-4
-* Too many dependencies
+* Currently https://github.com/AuthorizeNet/sdk-php is licensed under a proprietary license.
+* It is not PSR-4.
+* Too many dependencies.
+
+## Dependencies
+
+PHP version >= 5.5.0 is required.
+
+The following PHP extensions are required:
+* json
+* simplexml
+* xmlwrite
+
+This library also uses Guzzle 6.
 
 ## Testing
 
-### Test Credit Card Numbers
+### PHPUnit
+
+Run `composer test`, or `./vendor/bin/phpunit -c phpunit.xml.dist`
+
+### Test Credit Card Numbercs
 
 | Card Type                  | Card Number      |
 |----------------------------|------------------|
@@ -20,3 +35,8 @@ A Guzzle and PSR-4 SDK for the Authorize.net API.
 | Second Visa Test Card      | 4012888818888    |
 | JCB                        | 3088000000000017 |
 | Diners Club/ Carte Blanche | 38000000000006   |
+
+
+## License
+
+See the LICENSE file.
