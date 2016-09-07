@@ -21,10 +21,12 @@ class CreateTransactionRequest extends BaseApiRequest
 
     /**
      * @param \mglaman\AuthNet\DataTypes\TransactionRequest $transactionRequest
+     * @return $this
      */
     public function setTransactionRequest($transactionRequest)
     {
         $this->transactionRequest = $transactionRequest;
+        return $this;
     }
 
     public function getType()

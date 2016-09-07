@@ -9,7 +9,7 @@ use mglaman\AuthNet\Request\RequestInterface;
 use mglaman\AuthNet\Request\XmlRequest;
 use mglaman\AuthNet\Response\JsonResponse;
 
-abstract class BaseApiRequest
+abstract class BaseApiRequest implements ApiRequestInterface
 {
     /**
      * @var \mglaman\AuthNet\Configuration
@@ -52,7 +52,6 @@ abstract class BaseApiRequest
      */
     abstract protected function attachData(RequestInterface $request);
 
-    // @todo make ApiRequestInterface.
     public function execute()
     {
         if ($this->configuration->getRequestMode() == 'json') {

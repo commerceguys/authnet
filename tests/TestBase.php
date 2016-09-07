@@ -4,6 +4,7 @@ namespace mglaman\AuthNet\Tests;
 
 use GuzzleHttp\Client;
 use mglaman\AuthNet\Configuration;
+use mglaman\AuthNet\RequestFactory;
 
 abstract class TestBase extends \PHPUnit_Framework_TestCase
 {
@@ -16,6 +17,11 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
      */
     protected $client;
 
+    /**
+     * @var \mglaman\AuthNet\RequestFactory
+     */
+    protected $requestFactory;
+
     protected function setUp()
     {
         parent::setUp();
@@ -25,5 +31,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
           'sandbox' => true,
         ]);
         $this->client = new Client();
+
+        $this->requestFactory = new RequestFactory($this->configuration, $this->client);
     }
 }

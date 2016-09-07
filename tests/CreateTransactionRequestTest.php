@@ -15,7 +15,9 @@ class CreateTransactionRequestTest extends TestBase
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
 
         // XML
-        $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
@@ -29,7 +31,9 @@ class CreateTransactionRequestTest extends TestBase
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_ONLY);
 
         // XML
-        $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
@@ -43,7 +47,9 @@ class CreateTransactionRequestTest extends TestBase
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_ONLY);
 
         // XML
-        $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
 
         // This randomly fails. Maybe because we try to capture too soon?
@@ -51,12 +57,13 @@ class CreateTransactionRequestTest extends TestBase
         sleep(2);
 
         // XML
-        $request = new CreateTransactionRequest($this->configuration, $this->client);
-        $request->setTransactionRequest(new TransactionRequest([
-          'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
-          'amount' => 5.00,
-          'refTransId' => $response->transactionResponse->transId
-        ]));
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest(new TransactionRequest([
+            'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+            'amount' => 5.00,
+            'refTransId' => $response->transactionResponse->transId
+          ]));
         $response = $request->execute();
         $this->assertTrue(isset($response->transactionResponse));
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
@@ -108,11 +115,13 @@ class CreateTransactionRequestTest extends TestBase
     public function testRefundTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
-        $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
 
 
-        $request = new CreateTransactionRequest($this->configuration, $this->client);
+        $request = $this->requestFactory->createTransactionRequest();
         $request->setTransactionRequest(new TransactionRequest([
           'transactionType' => TransactionRequest::REFUND,
           'amount' => 5.00,
@@ -133,14 +142,17 @@ class CreateTransactionRequestTest extends TestBase
     public function testVoidTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
-        $request = new CreateTransactionRequest($this->configuration, $this->client, $transactionRequest);
+        $request = $this->requestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
 
         // This randomly fails. Maybe because we try to void too soon?
         // Try sleeping for a little bit.
         sleep(2);
 
-        $request = new CreateTransactionRequest($this->configuration, $this->client);
+        $request = $this->requestFactory
+          ->createTransactionRequest();
         $request->setTransactionRequest(new TransactionRequest([
           'transactionType' => TransactionRequest::VOID,
           'amount' => 5.00,
