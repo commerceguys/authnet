@@ -2,7 +2,9 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-class CreditCard extends BaseDataType
+use CommerceGuys\AuthNet\DataTypes\PaymentMethod;
+
+class CreditCard extends BaseDataType implements PaymentMethod
 {
 
 }
