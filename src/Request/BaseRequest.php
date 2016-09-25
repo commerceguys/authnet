@@ -103,7 +103,7 @@ abstract class BaseRequest implements RequestInterface
     protected function requestOptions()
     {
         $opts = [
-            'verify' => __DIR__ . '/../../resources/cert.pem',
+            'verify' => true,
             'headers' => [
               'Content-Type' => $this->getContentType(),
             ],

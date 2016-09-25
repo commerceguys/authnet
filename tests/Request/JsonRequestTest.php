@@ -38,7 +38,7 @@ class JsonRequestTest extends \PHPUnit_Framework_TestCase
         ]));
         $this->assertEquals('application/json', $request->getContentType());
 
-        $expected = '{"authenticateTestRequest":{"merchantAuthentication":{"name":"5KP3u95bQpv","transactionKey":"346HZ32z3fP4hTG2"}}}';
+        $expected = '{"authenticateTestRequest":{"merchantAuthentication":{"name":"'.AUTHORIZENET_API_LOGIN_ID.'","transactionKey":"'.AUTHORIZENET_TRANSACTION_KEY.'"}}}';
         $this->assertEquals($expected, trim($request->getBody()));
     }
 
