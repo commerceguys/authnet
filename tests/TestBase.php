@@ -29,6 +29,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
           'api_login' => AUTHORIZENET_API_LOGIN_ID,
           'transaction_key' => AUTHORIZENET_TRANSACTION_KEY,
           'sandbox' => true,
+          'certificate_verify' => TESTS_CERTIFICATE_VERIFY,
         ]);
         $this->client = new Client();
 

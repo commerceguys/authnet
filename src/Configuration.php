@@ -8,6 +8,7 @@ class Configuration
     private $transactionKey;
     private $sandbox;
     private $requestMode = 'xml';
+    private $certificateVerify;
 
     public function __construct(array $config)
     {
@@ -18,6 +19,12 @@ class Configuration
 
         if (isset($config['request_mode'])) {
             $this->requestMode = $config['request_mode'];
+        }
+
+        if (isset($config['certificate_verify'])) {
+            $this->certificateVerify = $config['certificate_verify'];
+        } else {
+            $this->certificateVerify = __DIR__ . '/../resources/cert.pem';
         }
     }
 
@@ -90,6 +97,24 @@ class Configuration
     public function setRequestMode($requestMode)
     {
         $this->requestMode = $requestMode;
+        return $this;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getCertificateVerify()
+    {
+        return $this->certificateVerify;
+    }
+
+    /**
+     * @param mixed|string $value
+     * @return Configuration
+     */
+    public function setCertificateVerify($value)
+    {
+        $this->certificateVerify = $value;
         return $this;
     }
 }

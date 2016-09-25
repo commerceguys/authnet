@@ -29,6 +29,8 @@
         <const name="AUTHORIZENET_API_LOGIN_ID" value="5KP3u95bQpv" />
         <const name="AUTHORIZENET_TRANSACTION_KEY" value="346HZ32z3fP4hTG2" />
         <const name="AUTHORIZENET_MD5_SETTING" value="" />
+        <!-- Path to certificate, or `true` to use system certificates. -->
+        <const name="TESTS_CERTIFICATE_VERIFY" value="resources/cert.pem" />
     </php>
 
 </phpunit>
