@@ -22,7 +22,7 @@ class JsonResponseTest extends \PHPUnit_Framework_TestCase
 }';
         $response = new JsonResponse(new Response(200, [], $payload));
         $this->assertEquals('Ok', $response->getResultCode());
-        $this->assertEquals('I00001', $response->getMessages()[0]->code);
-        $this->assertEquals('Successful.', $response->getMessages()[0]->text);
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
     }
 }

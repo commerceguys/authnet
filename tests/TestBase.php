@@ -11,7 +11,13 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     /**
      * @var \CommerceGuys\AuthNet\Configuration
      */
-    protected $configuration;
+    protected $configurationXml;
+
+    /**
+     * @var \CommerceGuys\AuthNet\Configuration
+     */
+    protected $configurationJson;
+
     /**
      * @var \GuzzleHttp\Client
      */
@@ -20,19 +26,32 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
     /**
      * @var \CommerceGuys\AuthNet\RequestFactory
      */
-    protected $requestFactory;
+    protected $xmlRequestFactory;
+
+    /**
+     * @var \CommerceGuys\AuthNet\RequestFactory
+     */
+    protected $jsonRequestFactory;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->configuration = new Configuration([
+        $this->configurationXml = new Configuration([
           'api_login' => AUTHORIZENET_API_LOGIN_ID,
           'transaction_key' => AUTHORIZENET_TRANSACTION_KEY,
           'sandbox' => true,
           'certificate_verify' => TESTS_CERTIFICATE_VERIFY,
         ]);
+        $this->configurationJson = new Configuration([
+          'api_login' => AUTHORIZENET_API_LOGIN_ID,
+          'transaction_key' => AUTHORIZENET_TRANSACTION_KEY,
+          'sandbox' => true,
+          'certificate_verify' => TESTS_CERTIFICATE_VERIFY,
+          'request_mode' => 'json',
+        ]);
         $this->client = new Client();
 
-        $this->requestFactory = new RequestFactory($this->configuration, $this->client);
+        $this->xmlRequestFactory = new RequestFactory($this->configurationXml, $this->client);
+        $this->jsonRequestFactory = new RequestFactory($this->configurationJson, $this->client);
     }
 }

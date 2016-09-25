@@ -17,7 +17,7 @@ class CustomerProfileRequestTest extends TestBase
 
     public function testGetCustomerProfileIdsRequest()
     {
-        $request = new GetCustomerProfileIdsRequest($this->configuration, $this->client);
+        $request = new GetCustomerProfileIdsRequest($this->configurationXml, $this->client);
         $response = $request->execute();
         $this->assertTrue(isset($response->ids));
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
@@ -51,14 +51,14 @@ class CustomerProfileRequestTest extends TestBase
         ]);
         $profile->addPaymentProfile($paymentProfile);
 
-        $request = new CreateCustomerProfileRequest($this->configuration, $this->client);
+        $request = new CreateCustomerProfileRequest($this->configurationXml, $this->client);
         $request->setProfile($profile);
         $response = $request->execute();
         $this->assertTrue(isset($response->customerProfileId));
         $this->assertTrue(isset($response->customerPaymentProfileIdList));
         $this->assertTrue(isset($response->validationDirectResponseList));
 
-        $request = new GetCustomerProfileRequest($this->configuration, $this->client, $response->customerProfileId);
+        $request = new GetCustomerProfileRequest($this->configurationXml, $this->client, $response->customerProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
@@ -70,14 +70,14 @@ class CustomerProfileRequestTest extends TestBase
             'email' => 'exampleUpdated+' . rand(0, 10000) . '@example.com',
             'customerProfileId' => $customerProfileId,
         ]);
-        $request = new UpdateCustomerProfileRequest($this->configuration, $this->client, $profile);
+        $request = new UpdateCustomerProfileRequest($this->configurationXml, $this->client, $profile);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
 
         $request = new DeleteCustomerProfileRequest(
-            $this->configuration,
+            $this->configurationXml,
             $this->client,
             $customerProfileId
         );

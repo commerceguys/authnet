@@ -21,14 +21,14 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $profile = new Profile([
             'email' => 'example+' . rand(0, 10000) . '@example.com',
         ]);
-        $request = new CreateCustomerProfileRequest($this->configuration, $this->client);
+        $request = new CreateCustomerProfileRequest($this->configurationXml, $this->client);
         $request->setProfile($profile);
         $request->setValidationMode('none');
         $response = $request->execute();
 
         $customerProfileId = $response->customerProfileId;
 
-        $request = new CreateCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
 
         $paymentProfile = new PaymentProfile([
@@ -60,25 +60,25 @@ class CustomerPaymentProfileRequestTest extends TestBase
 
         $customerPaymentProfileId = $response->customerPaymentProfileId;
 
-        $request = new GetCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new ValidateCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new ValidateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new DeleteCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new DeleteCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new GetCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
@@ -91,14 +91,14 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $profile = new Profile([
             'email' => 'example+' . rand(0, 10000) . '@example.com',
         ]);
-        $request = new CreateCustomerProfileRequest($this->configuration, $this->client);
+        $request = new CreateCustomerProfileRequest($this->configurationXml, $this->client);
         $request->setProfile($profile);
         $request->setValidationMode('none');
         $response = $request->execute();
 
         $customerProfileId = $response->customerProfileId;
 
-        $request = new CreateCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
 
         $paymentProfile = new PaymentProfile([
@@ -134,25 +134,25 @@ class CustomerPaymentProfileRequestTest extends TestBase
 
         $customerPaymentProfileId = $response->customerPaymentProfileId;
 
-        $request = new GetCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new ValidateCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new ValidateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new DeleteCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new DeleteCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
-        $request = new GetCustomerPaymentProfileRequest($this->configuration, $this->client);
+        $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();

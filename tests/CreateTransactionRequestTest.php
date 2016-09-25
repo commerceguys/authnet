@@ -15,7 +15,7 @@ class CreateTransactionRequestTest extends TestBase
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
 
         // XML
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
@@ -23,7 +23,22 @@ class CreateTransactionRequestTest extends TestBase
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
-        // @todo Test JSON, it's not working.
+
+        // Use a new number, otherwise a duplicate transaction is flagged.
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_CAPTURE,
+            '4007000000027'
+        );
+
+        // JSON
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Ok', $response->getResultCode());
     }
 
     public function testAuthTransaction()
@@ -31,7 +46,7 @@ class CreateTransactionRequestTest extends TestBase
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_ONLY);
 
         // XML
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
@@ -39,25 +54,74 @@ class CreateTransactionRequestTest extends TestBase
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
         $this->assertEquals('Ok', $response->getResultCode());
-        // @todo Test JSON, it's not working.
+
+
+        // Use a new number, otherwise a duplicate transaction is flagged.
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_CAPTURE,
+            '4007000000027'
+        );
+
+        // JSON
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Ok', $response->getResultCode());
     }
 
+    /**
+     * @group debug
+     */
     public function testPriorAuthCaptureTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_ONLY);
 
         // XML
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
 
         // This randomly fails. Maybe because we try to capture too soon?
         // Try sleeping for a little bit.
-        sleep(2);
+        sleep(3);
 
         // XML
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest(new TransactionRequest([
+            'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+            'amount' => 5.00,
+            'refTransId' => $response->transactionResponse->transId
+          ]));
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Ok', $response->getResultCode());
+
+        // Use a new number, otherwise a duplicate transaction is flagged.
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_ONLY,
+            '4222222222222'
+        );
+
+        // JSON
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+
+        // This randomly fails. Maybe because we try to capture too soon?
+        // Try sleeping for a little bit.
+        sleep(3);
+
+        // JSON
+        $request = $this->jsonRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest(new TransactionRequest([
             'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
@@ -115,13 +179,13 @@ class CreateTransactionRequestTest extends TestBase
     public function testRefundTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
 
 
-        $request = $this->requestFactory->createTransactionRequest();
+        $request = $this->xmlRequestFactory->createTransactionRequest();
         $request->setTransactionRequest(new TransactionRequest([
           'transactionType' => TransactionRequest::REFUND,
           'amount' => 5.00,
@@ -142,7 +206,7 @@ class CreateTransactionRequestTest extends TestBase
     public function testVoidTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
           ->createTransactionRequest()
           ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
@@ -151,7 +215,36 @@ class CreateTransactionRequestTest extends TestBase
         // Try sleeping for a little bit.
         sleep(2);
 
-        $request = $this->requestFactory
+        $request = $this->xmlRequestFactory
+          ->createTransactionRequest();
+        $request->setTransactionRequest(new TransactionRequest([
+          'transactionType' => TransactionRequest::VOID,
+          'amount' => 5.00,
+          'refTransId' => $response->transactionResponse->transId
+        ]));
+
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Ok', $response->getResultCode());
+
+        // Use a new number, otherwise a duplicate transaction is flagged.
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_CAPTURE,
+            '4007000000027'
+        );
+
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+
+        // This randomly fails. Maybe because we try to void too soon?
+        // Try sleeping for a little bit.
+        sleep(2);
+
+        $request = $this->jsonRequestFactory
           ->createTransactionRequest();
         $request->setTransactionRequest(new TransactionRequest([
           'transactionType' => TransactionRequest::VOID,
@@ -168,16 +261,17 @@ class CreateTransactionRequestTest extends TestBase
 
     /**
      * @param $type
+     * @param $cardNum
      * @return \CommerceGuys\AuthNet\DataTypes\TransactionRequest
      */
-    protected function createChargableTransactionRequest($type)
+    protected function createChargableTransactionRequest($type, $cardNum = '4111111111111111')
     {
         $transactionRequest = new TransactionRequest([
           'transactionType' => $type,
           'amount' => 5.00,
         ]);
         $transactionRequest->addPayment(new CreditCard([
-          'cardNumber' => '4111111111111111',
+          'cardNumber' => $cardNum,
           'expirationDate' => '1230',
           'cardCode' => '123',
         ]));

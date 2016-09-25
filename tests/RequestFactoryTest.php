@@ -8,7 +8,7 @@ class RequestFactoryTest extends TestBase
 {
     public function testRequestFactory()
     {
-        $request = $this->requestFactory->createTransactionRequest();
+        $request = $this->xmlRequestFactory->createTransactionRequest();
         $this->assertInstanceOf(CreateTransactionRequest::class, $request);
     }
 
@@ -18,7 +18,7 @@ class RequestFactoryTest extends TestBase
             \InvalidArgumentException::class,
             "Request createNonExistantRequest does not exist"
         );
-        $this->requestFactory->createNonExistantRequest();
+        $this->xmlRequestFactory->createNonExistantRequest();
     }
 
     public function testNotInstanceOf()
@@ -27,6 +27,6 @@ class RequestFactoryTest extends TestBase
             \InvalidArgumentException::class,
             "Request configuration is not a valid request"
         );
-        $this->requestFactory->configuration();
+        $this->xmlRequestFactory->configuration();
     }
 }
