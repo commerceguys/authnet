@@ -5,6 +5,11 @@ namespace CommerceGuys\AuthNet;
 use CommerceGuys\AuthNet\DataTypes\PaymentProfile;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Create a new customer payment profile for an existing customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-create-customer-payment-profile
+ */
 class CreateCustomerPaymentProfileRequest extends BaseApiRequest
 {
     /**

@@ -5,6 +5,11 @@ namespace CommerceGuys\AuthNet;
 use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Delete an existing customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-delete-customer-profile
+ */
 class DeleteCustomerProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;

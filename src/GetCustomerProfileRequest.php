@@ -5,6 +5,11 @@ namespace CommerceGuys\AuthNet;
 use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Retrieve an existing customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-get-customer-profile
+ */
 class GetCustomerProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;

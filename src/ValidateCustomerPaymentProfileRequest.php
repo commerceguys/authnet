@@ -4,6 +4,11 @@ namespace CommerceGuys\AuthNet;
 
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Verifies an existing customer payment profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-validate-customer-payment-profile
+ */
 class ValidateCustomerPaymentProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;

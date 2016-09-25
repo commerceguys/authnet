@@ -4,6 +4,11 @@ namespace CommerceGuys\AuthNet;
 
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Retrieve a customer payment profile for an existing customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-get-customer-payment-profile
+ */
 class GetCustomerPaymentProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;

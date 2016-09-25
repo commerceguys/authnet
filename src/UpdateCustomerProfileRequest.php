@@ -7,7 +7,7 @@ use CommerceGuys\AuthNet\DataTypes\Profile;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
 /**
- * Class UpdateCustomerProfileRequest
+ * Update an existing customer profile.
  *
  * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-update-customer-profile
  */

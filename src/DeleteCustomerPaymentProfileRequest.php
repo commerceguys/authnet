@@ -4,6 +4,11 @@ namespace CommerceGuys\AuthNet;
 
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Delete a customer payment profile from an existing customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-delete-customer-payment-profile
+ */
 class DeleteCustomerPaymentProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;

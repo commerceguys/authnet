@@ -6,6 +6,11 @@ use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\DataTypes\Profile;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Create a new customer profile.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#customer-profiles-create-customer-profile
+ */
 class CreateCustomerProfileRequest extends BaseApiRequest
 {
     protected $profile;

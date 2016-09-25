@@ -6,6 +6,11 @@ use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
+/**
+ * Use this method to authorize and capture a credit card payment.
+ *
+ * @link http://developer.authorize.net/api/reference/index.html#payment-transactions-charge-a-credit-card
+ */
 class CreateTransactionRequest extends BaseApiRequest
 {
     protected $transactionRequest;
