@@ -61,7 +61,8 @@ abstract class BaseApiRequest implements ApiRequestInterface
         }
 
         $request->addDataType($this->merchantAuthentication);
-
+        $request->addData('clientId', 'CG-PHP-SDK');
+        $request->addData('refId', 'ref' . time());
         $this->attachData($request);
 
         $response = $request->sendRequest();

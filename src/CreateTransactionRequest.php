@@ -34,14 +34,8 @@ class CreateTransactionRequest extends BaseApiRequest
         return $this;
     }
 
-    public function getType()
-    {
-        return 'createTransactionRequest';
-    }
-
     protected function attachData(RequestInterface $request)
     {
-        $request->addData('refId', 'ref' . time());
         $request->addDataType($this->transactionRequest);
     }
 }
