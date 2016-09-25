@@ -2,7 +2,7 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-interface PaymentMethodInterface
+interface PaymentMethodInterface extends DataTypeInterface
 {
 
 }
