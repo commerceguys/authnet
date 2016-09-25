@@ -12,7 +12,11 @@ class Configuration
 
     public function __construct(array $config)
     {
-        // @todo validate and throw invalid argument exception if missing.
+        foreach (['api_login', 'transaction_key', 'sandbox'] as $required_key) {
+            if (!isset($config[$required_key])) {
+                throw new \InvalidArgumentException("You must provide a value for $required_key");
+            }
+        }
         $this->apiLogin = $config['api_login'];
         $this->transactionKey = $config['transaction_key'];
         $this->sandbox = $config['sandbox'];

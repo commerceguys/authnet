@@ -26,7 +26,6 @@ interface RequestInterface
     public function addDataType(DataTypeInterface $data);
 
     /**
-     * @todo move to interface
      * @param $name
      * @param $value
      */
