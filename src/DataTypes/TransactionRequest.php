@@ -14,6 +14,7 @@ class TransactionRequest extends BaseDataType
     public function addPayment(CreditCard $creditCard)
     {
         $this->properties['payment'][$creditCard->getType()] = $creditCard->toArray();
+        $this->properties['solution']['id'] = 'A1000009';
     }
     public function addOrder(Order $order)
     {
