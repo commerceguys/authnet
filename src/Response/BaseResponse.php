@@ -69,6 +69,31 @@ abstract class BaseResponse implements ResponseInterface
         }
     }
 
+    public function getErrors()
+    {
+        if (!isset($this->contents->transactionResponse->errors)) {
+            return [];
+        }
+
+        if (is_array($this->contents->transactionResponse->errors)) {
+            $messages = [];
+            foreach ($this->contents->transactionResponse->errors as $item) {
+                $messages[] = new Message([
+                  'code' => $item->errorCode,
+                  'text' => $item->errorText,
+                ]);
+            }
+            return $messages;
+        } else {
+            return [
+              new Message([
+                'code' => $this->contents->transactionResponse->errors->error->errorCode,
+                'text' => $this->contents->transactionResponse->errors->error->errorText,
+              ])
+            ];
+        }
+    }
+
     public function __isset($name)
     {
         return isset($this->contents->$name);

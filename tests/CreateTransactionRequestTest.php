@@ -10,6 +10,51 @@ use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
 class CreateTransactionRequestTest extends TestBase
 {
 
+    public function testInvalidPayment()
+    {
+        // Expired
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_ONLY,
+            '4995949165814994',
+            '1210'
+        );
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+        $this->assertEquals('E00027', $response->getMessages()[0]->getCode());
+        $this->assertEquals('The transaction was unsuccessful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Error', $response->getResultCode());
+        $this->assertEquals('The credit card has expired.', $response->getErrors()[0]->getText());
+
+        $request = $this->xmlRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+        $this->assertEquals('E00027', $response->getMessages()[0]->getCode());
+        $this->assertEquals('The transaction was unsuccessful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Error', $response->getResultCode());
+        $this->assertEquals('The credit card has expired.', $response->getErrors()[0]->getText());
+
+
+        // Invalid number
+        $transactionRequest = $this->createChargableTransactionRequest(
+            TransactionRequest::AUTH_ONLY,
+            '4995949165814995'
+        );
+        $request = $this->jsonRequestFactory
+          ->createTransactionRequest()
+          ->setTransactionRequest($transactionRequest);
+        $response = $request->execute();
+        $this->assertTrue(isset($response->transactionResponse));
+
+        $this->assertEquals('E00027', $response->getMessages()[0]->getCode());
+        $this->assertEquals('The transaction was unsuccessful.', $response->getMessages()[0]->getText());
+        $this->assertEquals('Error', $response->getResultCode());
+        $this->assertEquals('The credit card number is invalid.', $response->getErrors()[0]->getText());
+    }
+
     public function testAuthCaptureTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
@@ -73,9 +118,6 @@ class CreateTransactionRequestTest extends TestBase
         $this->assertEquals('Ok', $response->getResultCode());
     }
 
-    /**
-     * @group debug
-     */
     public function testPriorAuthCaptureTransaction()
     {
         $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_ONLY);
@@ -262,9 +304,11 @@ class CreateTransactionRequestTest extends TestBase
     /**
      * @param $type
      * @param $cardNum
+     * @param $expDate
+     * @param $cvv
      * @return \CommerceGuys\AuthNet\DataTypes\TransactionRequest
      */
-    protected function createChargableTransactionRequest($type, $cardNum = '4111111111111111')
+    protected function createChargableTransactionRequest($type, $cardNum = '4111111111111111', $expDate = '1230', $cvv = '123')
     {
         $transactionRequest = new TransactionRequest([
           'transactionType' => $type,
@@ -272,8 +316,8 @@ class CreateTransactionRequestTest extends TestBase
         ]);
         $transactionRequest->addPayment(new CreditCard([
           'cardNumber' => $cardNum,
-          'expirationDate' => '1230',
-          'cardCode' => '123',
+          'expirationDate' => $expDate,
+          'cardCode' => $cvv,
         ]));
         $transactionRequest->addOrder(new Order([
           'invoiceNumber' => 'INV-' . rand(10, 100),

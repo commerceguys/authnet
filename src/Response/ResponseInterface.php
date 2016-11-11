@@ -21,5 +21,10 @@ interface ResponseInterface
      */
     public function getMessages();
 
+    /**
+     * @return \CommerceGuys\AuthNet\DataTypes\Message[]
+     */
+    public function getErrors();
+
     public function __get($name);
 }
