@@ -25,7 +25,6 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setProfile($profile);
         $request->setValidationMode('none');
         $response = $request->execute();
-
         $customerProfileId = $response->customerProfileId;
 
         $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);

@@ -11,10 +11,38 @@ class TransactionRequest extends BaseDataType
     const REFUND = 'refundTransaction';
     const VOID = 'voidTransaction';
 
+    protected $propertyMap = [
+        'transactionType',
+        'amount',
+        'payment',
+        'profile',
+        'solution',
+        'order',
+        'lineItems',
+        'tax',
+        'shipping',
+        'taxExempt',
+        'poNumber',
+        'customer',
+        'billTo',
+        'shipTo',
+        'customerIP',
+        'cardholderAuthentication',
+        'retail',
+        'employeeId',
+        'transactionSettings',
+        'userFields',
+    ];
+
+    protected $properties = [
+        'solution' => [
+            'id' => 'A1000009',
+        ],
+    ];
+
     public function addPayment(CreditCard $creditCard)
     {
         $this->properties['payment'][$creditCard->getType()] = $creditCard->toArray();
-        $this->properties['solution']['id'] = 'A1000009';
     }
     public function addOrder(Order $order)
     {

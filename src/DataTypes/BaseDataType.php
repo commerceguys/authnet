@@ -4,6 +4,7 @@ namespace CommerceGuys\AuthNet\DataTypes;
 
 abstract class BaseDataType implements DataTypeInterface
 {
+    protected $propertyMap = [];
     protected $properties;
 
     public function __construct(array $values = [])
@@ -25,7 +26,14 @@ abstract class BaseDataType implements DataTypeInterface
 
     public function toArray()
     {
-        return $this->properties;
+        $sorted_properties = [];
+        foreach ($this->propertyMap as $property_key) {
+            if (isset($this->properties[$property_key])) {
+                $sorted_properties[$property_key] = $this->properties[$property_key];
+            }
+        }
+        $sorted_properties += $this->properties;
+        return $sorted_properties;
     }
 
     public function getType()
