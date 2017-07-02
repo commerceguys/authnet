@@ -24,8 +24,8 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase {
       ->createTransactionRequest()
       ->setTransactionRequest(new TransactionRequest([
         'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+        'refTransId' => $response->transactionResponse->transId,
         'amount' => 5.00,
-        'refTransId' => $response->transactionResponse->transId
       ]));
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
@@ -54,8 +54,8 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase {
       ->createTransactionRequest()
       ->setTransactionRequest(new TransactionRequest([
         'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+        'refTransId' => $response->transactionResponse->transId,
         'amount' => 5.00,
-        'refTransId' => $response->transactionResponse->transId
       ]));
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
@@ -81,8 +81,8 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase {
       ->createTransactionRequest()
       ->setTransactionRequest(new TransactionRequest([
         'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+        'refTransId' => $response->transactionResponse->transId,
         'amount' => 5.00,
-        'refTransId' => $response->transactionResponse->transId
       ]));
     $response = $request->execute();
     $this->assertEquals('Ok', $response->getResultCode());
@@ -92,8 +92,8 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase {
       ->createTransactionRequest()
       ->setTransactionRequest(new TransactionRequest([
         'transactionType' => TransactionRequest::PRIOR_AUTH_CAPTURE,
+        'refTransId' => $response->transactionResponse->transId,
         'amount' => 5.00,
-        'refTransId' => $response->transactionResponse->transId
       ]));
     $response = $request->execute();
     $this->assertEmpty($response->getErrors());

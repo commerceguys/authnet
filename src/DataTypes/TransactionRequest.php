@@ -14,12 +14,18 @@ class TransactionRequest extends BaseDataType
     protected $propertyMap = [
         'transactionType',
         'amount',
+        'currencyCode',
         'payment',
         'profile',
         'solution',
+        'callId',
+        'terminalNumber',
+        'authCode',
+        'refTransId',
         'order',
         'lineItems',
         'tax',
+        'duty',
         'shipping',
         'taxExempt',
         'poNumber',
@@ -32,6 +38,8 @@ class TransactionRequest extends BaseDataType
         'employeeId',
         'transactionSettings',
         'userFields',
+        'surcharge',
+        'merchantDescriptor',
     ];
 
     protected $properties = [
