@@ -2,9 +2,16 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-// @todo If the billTo element is not before payment, an error occurs.
 class PaymentProfile extends BaseDataType
 {
+
+    protected $propertyMap = [
+        'customerType',
+        'billTo',
+        'payment',
+        'defaultPaymentProfile',
+    ];
+
     public function addPayment(PaymentMethodInterface $paymentMethod)
     {
         $this->properties['payment'][$paymentMethod->getType()] = $paymentMethod->toArray();

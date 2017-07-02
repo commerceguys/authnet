@@ -2,7 +2,7 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-class BillTo extends BaseDataType
+class ShipTo extends BaseDataType
 {
 
     protected $propertyMap = [
@@ -14,7 +14,5 @@ class BillTo extends BaseDataType
         'state',
         'zip',
         'country',
-        'phoneNumber',
-        'faxNumber',
     ];
 }

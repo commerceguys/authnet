@@ -25,7 +25,6 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setProfile($profile);
         $request->setValidationMode('none');
         $response = $request->execute();
-
         $customerProfileId = $response->customerProfileId;
 
         $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
@@ -104,7 +103,15 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $paymentProfile = new PaymentProfile([
             'customerType' => 'individual',
         ]);
-        // @note: You must add the billTo first.
+
+        // Add payment first, to assert properties mapped in proper order.
+        $paymentProfile->addPayment(new BankAccount([
+          'accountType' => 'checking',
+          'routingNumber' => '111000614',
+          'accountNumber' => '123456789',
+          'nameOnAccount' => 'Dwayne Johnson',
+          'bankName' => 'Bank of America'
+        ]));
         $paymentProfile->addBillTo(new BillTo([
             'firstName' => 'Johnny',
             'lastName' => 'Appleseed',
@@ -114,14 +121,6 @@ class CustomerPaymentProfileRequestTest extends TestBase
             'zip' => '12345',
             'country' => 'US',
             'phoneNumber' => '5555555555',
-        ]));
-
-        $paymentProfile->addPayment(new BankAccount([
-            'accountType' => 'checking',
-            'routingNumber' => '111000614',
-            'accountNumber' => '123456789',
-            'nameOnAccount' => 'Dwayne Johnson',
-            'bankName' => 'Bank of America'
         ]));
 
         $request->setPaymentProfile($paymentProfile);
