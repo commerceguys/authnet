@@ -10,6 +10,7 @@ class PaymentProfile extends BaseDataType
         'billTo',
         'payment',
         'defaultPaymentProfile',
+        'customerPaymentProfileId'
     ];
 
     public function addPayment(PaymentMethodInterface $paymentMethod)
@@ -20,5 +21,10 @@ class PaymentProfile extends BaseDataType
     public function addBillTo(BillTo $billTo)
     {
         $this->addDataType($billTo);
+    }
+
+    public function addCustomerPaymentProfileId($id)
+    {
+        $this->properties['customerPaymentProfileId'] = $id;
     }
 }
