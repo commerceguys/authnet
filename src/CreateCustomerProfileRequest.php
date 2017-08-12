@@ -34,14 +34,6 @@ class CreateCustomerProfileRequest extends BaseApiRequest
     }
 
     /**
-     * @return string
-     */
-    public function getValidationMode()
-    {
-        return $this->validationMode;
-    }
-
-    /**
      * @param string $validationMode
      */
     public function setValidationMode($validationMode)

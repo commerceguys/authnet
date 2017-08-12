@@ -46,6 +46,17 @@ abstract class BaseDataType implements DataTypeInterface
         $this->properties[$name] = $value;
     }
 
+    public function __get($name)
+    {
+        return $this->properties[$name];
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->properties[$name]);
+    }
+
+
     public function __unset($name)
     {
         unset($this->properties[$name]);

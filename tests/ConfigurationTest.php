@@ -29,5 +29,12 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
         $config->setTransactionKey('test');
         $this->assertEquals('test', $config->getTransactionKey());
+
+        $config->setRequestMode('json');
+        $this->assertEquals('json', $config->getRequestMode());
+
+        $this->assertTrue(strpos($config->getCertificateVerify(), 'resources/cert.pem') !== FALSE);
+        $config->setCertificateVerify('/path/to/some/cert.pem');
+        $this->assertTrue(strpos($config->getCertificateVerify(), 'resources/cert.pem') === FALSE);
     }
 }

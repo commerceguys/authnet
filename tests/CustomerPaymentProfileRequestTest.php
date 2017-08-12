@@ -20,12 +20,13 @@ class CustomerPaymentProfileRequestTest extends TestBase
     public function testCreateCustomerPaymentProfileWithCreditCard()
     {
         $profile = new Profile([
-            'email' => 'example+' . rand(0, 10000) . '@example.com',
+            'email' => 'example+' . mt_rand() . '@example.com',
         ]);
         $request = new CreateCustomerProfileRequest($this->configurationXml, $this->client);
         $request->setProfile($profile);
         $request->setValidationMode('none');
         $response = $request->execute();
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $customerProfileId = $response->customerProfileId;
 
         $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
@@ -53,9 +54,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setPaymentProfile($paymentProfile);
 
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-        $this->assertEquals('Ok', $response->getResultCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertTrue(isset($response->customerPaymentProfileId));
 
         $customerPaymentProfileId = $response->customerPaymentProfileId;
@@ -65,6 +64,18 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
+        $this->assertEquals('XXXX', $response->paymentProfile->payment->creditCard->expirationDate);
+
+        // Get profile again, with unmasked credit card expiration date.
+        $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
+        $request->setCustomerProfileId($customerProfileId);
+        $request->setCustomerPaymentProfileId($customerPaymentProfileId);
+        $request->setUnmaskExpirationDate(TRUE);
+        $response = $request->execute();
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
+        $this->assertEquals('2020-12', $response->paymentProfile->payment->creditCard->expirationDate);
 
         $request = new ValidateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
@@ -127,6 +138,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $customerProfileId = $response->customerProfileId;
 
         $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
+        $request->setValidationMode('testMode');
         $request->setCustomerProfileId($customerProfileId);
 
         $paymentProfile = new PaymentProfile([
@@ -155,9 +167,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setPaymentProfile($paymentProfile);
 
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-        $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-        $this->assertEquals('Ok', $response->getResultCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertTrue(isset($response->customerPaymentProfileId));
 
         $customerPaymentProfileId = $response->customerPaymentProfileId;

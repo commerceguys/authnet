@@ -52,10 +52,12 @@ class TransactionRequest extends BaseDataType
     {
         $this->properties['payment'][$paymentMethod->getType()] = $paymentMethod->toArray();
     }
+
     public function addOrder(Order $order)
     {
         $this->addDataType($order);
     }
+
     public function addLineItem(LineItem $lineItem)
     {
         $this->properties['lineItems'][$lineItem->getType()] = $lineItem->toArray();
