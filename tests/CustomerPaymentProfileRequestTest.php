@@ -63,7 +63,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
         $this->assertEquals('XXXX', $response->paymentProfile->payment->creditCard->expirationDate);
 
@@ -73,7 +73,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $request->setUnmaskExpirationDate(TRUE);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
         $this->assertEquals('2020-12', $response->paymentProfile->payment->creditCard->expirationDate);
 
@@ -81,7 +81,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
         // @note: if not updating card number, must left pad last 4 digits with XXXX
         $request = new UpdateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
@@ -109,20 +109,19 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setPaymentProfile($paymentProfile);
         $request->setValidationMode('none');
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
         $request = new DeleteCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
-        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
         $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
         $response = $request->execute();
-        $this->assertEquals('E00040', $response->getMessages()[0]->getCode());
-        $this->assertEquals('The record cannot be found.', $response->getMessages()[0]->getText());
+        $this->assertResponse($response, 'E00040', 'The record cannot be found.', 'Error');
     }
 
     public function testCreateCustomerPaymentProfileWithBankAccount()
