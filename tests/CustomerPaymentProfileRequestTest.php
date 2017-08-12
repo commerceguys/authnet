@@ -10,6 +10,7 @@ use CommerceGuys\AuthNet\DataTypes\PaymentProfile;
 use CommerceGuys\AuthNet\CreateCustomerProfileRequest;
 use CommerceGuys\AuthNet\GetCustomerPaymentProfileRequest;
 use CommerceGuys\AuthNet\CreateCustomerPaymentProfileRequest;
+use CommerceGuys\AuthNet\UpdateCustomerPaymentProfileRequest;
 use CommerceGuys\AuthNet\DeleteCustomerPaymentProfileRequest;
 use CommerceGuys\AuthNet\ValidateCustomerPaymentProfileRequest;
 
@@ -68,6 +69,34 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request = new ValidateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
+        $response = $request->execute();
+        $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
+
+        // @note: if not updating card number, must left pad last 4 digits with XXXX
+        $request = new UpdateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
+        $request->setCustomerProfileId($customerProfileId);
+        $paymentProfile = new PaymentProfile([
+            'customerType' => 'individual',
+        ]);
+        $paymentProfile->addCustomerPaymentProfileId($customerPaymentProfileId);
+        // @note BillTo is optional. If provided at all, all fields must be provided
+        // or the missing ones will be removed from the profile.
+        // $paymentProfile->addBillTo(new BillTo([
+        //     'firstName' => 'Johnny',
+        //     'lastName' => 'Appleseed',
+        //     'address' => '123 New York Dr',
+        //     'city' => 'New York City',
+        //     'state' => 'NY',
+        //     'zip' => '12345',
+        //     'country' => 'US',
+        //     'phoneNumber' => '5555555555',
+        // ]));
+        $paymentProfile->addPayment(new CreditCard([
+          'cardNumber' => 'XXXX1111',
+          'expirationDate' => '2022-06',
+        ]));
+        $request->setPaymentProfile($paymentProfile);
+        $request->setValidationMode('none');
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
 
