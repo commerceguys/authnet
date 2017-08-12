@@ -69,6 +69,7 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase
             ->createTransactionRequest()
             ->setTransactionRequest($transactionRequest);
         $response = $request->execute();
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
         // This randomly fails. Maybe because we try to capture too soon?
         // Try sleeping for a little bit.
@@ -83,7 +84,7 @@ class PriorAuthCaptureTest extends CreateTransactionRequestTestBase
                 'amount' => 5.00,
             ]));
         $response = $request->execute();
-        $this->assertEquals('Ok', $response->getResultCode());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
         sleep(3);
         $request = $this->jsonRequestFactory
