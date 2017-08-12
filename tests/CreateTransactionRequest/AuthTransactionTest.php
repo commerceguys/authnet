@@ -16,14 +16,13 @@ class AuthTransactionTest extends CreateTransactionRequestTestBase
       ->setTransactionRequest($transactionRequest);
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+    $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
+    sleep(1);
 
     // Use a new number, otherwise a duplicate transaction is flagged.
     $transactionRequest = $this->createChargableTransactionRequest(
-      TransactionRequest::AUTH_CAPTURE,
+      TransactionRequest::AUTH_ONLY,
       '4007000000027'
     );
 
@@ -33,8 +32,6 @@ class AuthTransactionTest extends CreateTransactionRequestTestBase
       ->setTransactionRequest($transactionRequest);
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+      $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
   }
 }
