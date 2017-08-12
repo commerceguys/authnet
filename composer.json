@@ -1,7 +1,8 @@
 {
     "name": "commerceguys/authnet",
-    "description": "PHP SDK for Authorize.Net API",
+    "description": "PHP SDK for Authorize.Net API, using Guzzle.",
     "type": "library",
+    "keywords": ["authorizenet", "authorize.net", "payment", "ecommerce"],
     "require": {
         "php": ">=5.5",
         "ext-json": "*",
