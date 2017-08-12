@@ -16,9 +16,7 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
       ->setTransactionRequest($transactionRequest);
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+      $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
     // Use a new number, otherwise a duplicate transaction is flagged.
     $transactionRequest = $this->createChargableTransactionRequest(
@@ -32,9 +30,7 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
       ->setTransactionRequest($transactionRequest);
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+      $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
   }
 
   public function testBankAccountAuthCaptureTransaction()
@@ -48,9 +44,7 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
     $response = $request->execute();
 
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+      $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
 
     // Use a new number, otherwise a duplicate transaction is flagged.
     $transactionRequest = $this->createChargableBankAccountTransactionRequest(
@@ -64,8 +58,6 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
       ->setTransactionRequest($transactionRequest);
     $response = $request->execute();
     $this->assertTrue(isset($response->transactionResponse));
-    $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
-    $this->assertEquals('Successful.', $response->getMessages()[0]->getText());
-    $this->assertEquals('Ok', $response->getResultCode());
+      $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
   }
 }
