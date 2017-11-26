@@ -60,6 +60,8 @@ class TransactionRequest extends BaseDataType
 
     public function addLineItem(LineItem $lineItem)
     {
-        $this->properties['lineItems'][$lineItem->getType()] = $lineItem->toArray();
+        $this->properties['lineItems'][] = [
+            $lineItem->getType() => $lineItem->toArray(),
+        ];
     }
 }
