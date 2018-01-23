@@ -43,4 +43,20 @@ class XmlRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, trim($request->getBody()));
     }
 
+    public function testXmlRequestWithBadData()
+    {
+        $request = new XmlRequest($this->configuration, $this->client, 'authenticateTestRequest', [
+            'Address' => '<&some bad data &>',
+        ]);
+        $request->addDataType(new MerchantAuthentication([
+          'name' => $this->configuration->getApiLogin(),
+          'transactionKey' => $this->configuration->getTransactionKey(),
+        ]));
+        $this->assertEquals('text/xml', $request->getContentType());
+
+        $expected = '<?xml version="1.0"?>
+<authenticateTestRequest xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd"><Address>&lt;&amp;some bad data &amp;&gt;</Address><merchantAuthentication><name>' . $this->configuration->getApiLogin() . '</name><transactionKey>' . $this->configuration->getTransactionKey() . '</transactionKey></merchantAuthentication></authenticateTestRequest>';
+        $this->assertEquals($expected, trim($request->getBody()));
+    }
+
 }

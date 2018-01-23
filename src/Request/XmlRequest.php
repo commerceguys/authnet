@@ -35,7 +35,9 @@ class XmlRequest extends BaseRequest
                     $this->arrayToXml($value, $xml);
                 }
             } else {
-                $xml->addChild($key, $value);
+                // Make sure that the request data is always escaped.
+                // See https://secure.php.net/manual/en/simplexmlelement.addchild.php#112204
+                $xml->{$key} = $value;
             }
         }
     }
