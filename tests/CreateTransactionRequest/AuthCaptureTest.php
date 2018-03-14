@@ -17,7 +17,7 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
       'name' => 'Tax',
       'description' => 'Testing tax',
     ]);
-    $transactionRequest->addData('tax', $tax_data->toArray());
+    $transactionRequest->addData('tax', $tax_data);
       
     // XML
     $request = $this->xmlRequestFactory
