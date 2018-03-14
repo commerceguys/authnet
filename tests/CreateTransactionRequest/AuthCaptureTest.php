@@ -2,6 +2,7 @@
 
 namespace CommerceGuys\AuthNet\Tests\CreateTransactionRequest;
 
+use CommerceGuys\AuthNet\DataTypes\Tax;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
 
 class AuthCaptureTest extends CreateTransactionRequestTestBase
@@ -10,6 +11,14 @@ class AuthCaptureTest extends CreateTransactionRequestTestBase
   {
     $transactionRequest = $this->createChargableTransactionRequest(TransactionRequest::AUTH_CAPTURE);
 
+     // Add tax information to the transaction request.
+    $tax_data = new Tax([
+      'amount' => 5.43,
+      'name' => 'Tax',
+      'description' => 'Testing tax',
+    ]);
+    $transactionRequest->addData('tax', $tax_data->toArray());
+      
     // XML
     $request = $this->xmlRequestFactory
       ->createTransactionRequest()
