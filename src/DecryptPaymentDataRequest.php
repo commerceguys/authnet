@@ -32,8 +32,8 @@ class DecryptPaymentDataRequest extends BaseApiRequest
 
     protected function attachData(RequestInterface $request)
     {
-      $request->addDataType($this->opaqueData);
-      $request->addData('refId', $this->refId);
-      $request->addData('callId', $this->callId);
+        $request->addDataType($this->opaqueData);
+        $request->addData('refId', $this->refId);
+        $request->addData('callId', $this->callId);
     }
 }
