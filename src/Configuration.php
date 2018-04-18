@@ -27,6 +27,8 @@ class Configuration
 
         if (isset($config['certificate_verify'])) {
             $this->certificateVerify = $config['certificate_verify'];
+        } elseif ($cert = ini_get('curl.cainfo')) {
+            $this->certificateVerify = $cert;
         } else {
             $this->certificateVerify = __DIR__ . '/../resources/cert.pem';
         }
