@@ -27,6 +27,11 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request->setValidationMode('none');
         $response = $request->execute();
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
+
+        // If we passed payment information along, this would contain a string
+        // property which has a validation response for the payment method.
+        $this->assertTrue(is_object($response->validationDirectResponseList));
+
         $customerProfileId = $response->customerProfileId;
 
         $request = new CreateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
@@ -57,6 +62,9 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertTrue(isset($response->customerPaymentProfileId));
 
+        $validationDirectResponse = explode(',', $response->validationDirectResponse);
+        $this->assertEquals('Visa', $validationDirectResponse[51]);
+
         $customerPaymentProfileId = $response->customerPaymentProfileId;
 
         $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
@@ -71,7 +79,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $request = new GetCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
         $request->setCustomerPaymentProfileId($customerPaymentProfileId);
-        $request->setUnmaskExpirationDate(TRUE);
+        $request->setUnmaskExpirationDate(true);
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
