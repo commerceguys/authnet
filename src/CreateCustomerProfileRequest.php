@@ -44,6 +44,8 @@ class CreateCustomerProfileRequest extends BaseApiRequest
     protected function attachData(RequestInterface $request)
     {
         $request->addDataType($this->profile);
-        $request->addData('validationMode', $this->validationMode);
+        if ($this->validationMode == 'testMode' || $this->validationMode == 'liveMode') {
+            $request->addData('validationMode', $this->validationMode);
+        }
     }
 }
