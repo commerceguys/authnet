@@ -18,7 +18,7 @@ abstract class BaseRequest implements RequestInterface
 {
 
     const SANDBOX = 'https://apitest.authorize.net/xml/v1/request.api';
-    const LIVE = 'https://api.authorize.net/xml/v1/request.api';
+    const LIVE = 'https://api2.authorize.net/xml/v1/request.api';
 
     /**
      * @var \CommerceGuys\AuthNet\Configuration
