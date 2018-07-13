@@ -17,6 +17,11 @@ interface ResponseInterface
     public function getResultCode();
 
     /**
+     * @return string
+     */
+    public function getMessageCode();
+
+    /**
      * @return \CommerceGuys\AuthNet\DataTypes\Message[]
      */
     public function getMessages();
