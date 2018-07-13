@@ -74,11 +74,11 @@ abstract class BaseResponse implements ResponseInterface
      */
     public function getMessageCode()
     {
-      if (is_array($this->contents->transactionResponse->messages->message)) {
-        return $this->contents->transactionResponse->messages->message[0]->code;
-      } else {
-        return $this->contents->transactionResponse->messages->message->code;
-      }
+        if (is_array($this->contents->transactionResponse->messages->message)) {
+            return $this->contents->transactionResponse->messages->message[0]->code;
+        } else {
+            return $this->contents->transactionResponse->messages->message->code;
+        }
     }
 
     public function getErrors()
