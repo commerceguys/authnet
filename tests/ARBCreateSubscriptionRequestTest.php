@@ -32,13 +32,11 @@ class ARBCreateSubscriptionRequestTest extends TestBase
     protected function setUp()
     {
         parent::setUp();
-        $this->cleanupSubscriptions();
     }
 
     protected function tearDown()
     {
         parent::tearDown();
-        $this->cleanupSubscriptions();
     }
 
     public function testARBCreateSubscriptionRequestCRUD()
@@ -74,10 +72,7 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         $cancel = new ARBCancelSubscriptionRequest($this->configurationXml, $this->client, $subscriptionId);
         $response = $cancel->execute();
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
-    }
-
-    protected function cleanupSubscriptions()
-    {
+        // Retrieve a list of subscriptions.
         $sorting = new Sorting([
             'orderBy' => 'id',
             'orderDescending' => false,
@@ -89,6 +84,18 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         $request = new ARBGetSubscriptionListRequest($this->configurationXml, $this->client, 'subscriptionActive');
         $request->setSorting($sorting);
         $request->setPaging($paging);
+        $response = $request->execute();
+        $this->assertObjectHasAttribute('totalNumInResultSet', $response->contents());
+        $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
+        // If something has caused a lot of built-up subscriptions, remove them.
+        if ($response->contents()->totalNumInResultSet > 100) {
+            $this->cleanupSubscriptions();
+        }
+    }
+
+    protected function cleanupSubscriptions()
+    {
+        $request = new ARBGetSubscriptionListRequest($this->configurationXml, $this->client, 'subscriptionActive');
         $response = $request->execute();
         $contents = $response->contents();
         while ($contents->totalNumInResultSet) {
