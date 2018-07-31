@@ -2,7 +2,6 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-
 class PaymentSchedule extends BaseDataType
 {
     protected $propertyMap = [

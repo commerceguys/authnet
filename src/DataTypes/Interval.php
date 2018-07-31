@@ -2,7 +2,6 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-
 class Interval extends BaseDataType
 {
     protected $propertyMap = [
