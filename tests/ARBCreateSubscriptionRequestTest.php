@@ -29,7 +29,8 @@ use CommerceGuys\AuthNet\UpdateCustomerProfileRequest;
 class ARBCreateSubscriptionRequestTest extends TestBase
 {
 
-    protected function setUp() {
+    protected function setUp()
+    {
         parent::setUp();
         $this->cleanupSubscriptions();
     }
@@ -75,7 +76,8 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
     }
 
-    protected function cleanupSubscriptions() {
+    protected function cleanupSubscriptions()
+    {
         $sorting = new Sorting([
             'orderBy' => 'id',
             'orderDescending' => false,
@@ -103,5 +105,4 @@ class ARBCreateSubscriptionRequestTest extends TestBase
             $contents = $response->contents();
         }
     }
-
 }

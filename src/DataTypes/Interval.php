@@ -28,13 +28,15 @@ class Interval extends BaseDataType
         switch ($values['unit']) {
             case 'days':
                 if ($values['length'] < 7 || $values['length'] > 365) {
-                    throw new \InvalidArgumentException('Interval length for days must be between 7 and 365, inclusive.');
+                    $message = 'Interval length for days must be between 7 and 365, inclusive.';
+                    throw new \InvalidArgumentException($message);
                 }
                 break;
 
             case 'months':
                 if ($values['length'] < 1 || $values['length'] > 12) {
-                    throw new \InvalidArgumentException('Interval length for months must be between 1 and 12, inclusive.');
+                    $message = 'Interval length for months must be between 1 and 12, inclusive.';
+                    throw new \InvalidArgumentException($message);
                 }
                 break;
         }
