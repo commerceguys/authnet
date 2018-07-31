@@ -28,17 +28,6 @@ use CommerceGuys\AuthNet\UpdateCustomerProfileRequest;
 
 class ARBCreateSubscriptionRequestTest extends TestBase
 {
-
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
-    protected function tearDown()
-    {
-        parent::tearDown();
-    }
-
     public function testARBCreateSubscriptionRequestCRUD()
     {
         $interval = new Interval(['length' => 1, 'unit' => 'months']);
