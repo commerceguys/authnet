@@ -23,7 +23,7 @@ class Interval extends BaseDataType
         if (!isset($values['unit'])) {
             throw new \InvalidArgumentException('Interval must have a unit.');
         }
-        if (array_intersect(['days', 'months'], $values['unit'])) {
+        if (!array_intersect(['days', 'months'], (array) $values['unit'])) {
             throw new \InvalidArgumentException('Interval unit must be days or months.');
         }
         switch ($values['unit']) {

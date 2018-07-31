@@ -11,9 +11,9 @@ class Subscription extends BaseDataType
         'trialAmount',
         'payment',
         'order',
-        'customer',
         'billTo',
         'shipTo',
+        'profile',
     ];
 
     public function addPaymentSchedule(PaymentSchedule $paymentSchedule)
@@ -21,13 +21,28 @@ class Subscription extends BaseDataType
         $this->properties['paymentSchedule'] = $paymentSchedule->toArray();
     }
 
-    public function addPayment(PaymentMethodInterface $paymentMethod)
+    public function addPayment(PaymentMethodInterface $payment)
     {
-        $this->properties['payment'][$paymentMethod->getType()] = $paymentMethod->toArray();
+        $this->properties['payment'] = $payment->toArray();
     }
 
     public function addOrder(Order $order)
     {
         $this->addDataType($order);
+    }
+
+    public function addBillTo(BillTo $billTo)
+    {
+        $this->addDataType($billTo);
+    }
+
+    public function addShipTo(ShipTo $shipTo)
+    {
+        $this->addDataType($shipTo);
+    }
+
+    public function addProfile(CustomerProfileId $profile)
+    {
+        $this->properties['profile'] = $profile->toArray();
     }
 }

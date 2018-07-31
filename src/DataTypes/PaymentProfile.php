@@ -2,7 +2,7 @@
 
 namespace CommerceGuys\AuthNet\DataTypes;
 
-class PaymentProfile extends BaseDataType
+class PaymentProfile extends CustomerPaymentProfileBase
 {
 
     protected $propertyMap = [
@@ -16,11 +16,6 @@ class PaymentProfile extends BaseDataType
     public function addPayment(PaymentMethodInterface $paymentMethod)
     {
         $this->properties['payment'][$paymentMethod->getType()] = $paymentMethod->toArray();
-    }
-
-    public function addBillTo(BillTo $billTo)
-    {
-        $this->addDataType($billTo);
     }
 
     public function addCustomerPaymentProfileId($id)

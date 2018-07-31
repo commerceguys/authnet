@@ -3,17 +3,15 @@
 namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use CommerceGuys\AuthNet\DataTypes\SubscriptionRequest;
+use CommerceGuys\AuthNet\DataTypes\Subscription;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
 /**
  * Use this method to create subscriptions using Automated Recurring Billing.
- *
- * @link https://developer.authorize.net/api/reference/#recurring-billing
  */
-class ARBCreateSubscriptionRequest extends BaseApiRequest
+class ARBCreateSubscriptionRequest extends ARBSubscriptionRequest
 {
-    protected $subscriptionRequest;
+    protected $subscription;
 
     public function __construct(
         Configuration $configuration,
@@ -21,21 +19,21 @@ class ARBCreateSubscriptionRequest extends BaseApiRequest
         Subscription $subscription = null
     ) {
         parent::__construct($configuration, $client);
-        $this->subscriptionRequest = $subscription;
+        $this->subscription = $subscription;
     }
 
     /**
-     * @param \CommerceGuys\AuthNet\DataTypes\SubscriptionRequest $subscriptionRequest
+     * @param \CommerceGuys\AuthNet\DataTypes\Subscription $subscription
      * @return $this
      */
-    public function setSubscriptionRequest(SubscriptionRequest $subscriptionRequest)
+    public function setSubscription(Subscription $subscription)
     {
-        $this->subscriptionRequest = $subscription;
+        $this->subscription = $subscription;
         return $this;
     }
 
     protected function attachData(RequestInterface $request)
     {
-        $request->addDataType($this->subscriptionRequest);
+        $request->addDataType($this->subscription);
     }
 }
