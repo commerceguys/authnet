@@ -45,4 +45,23 @@ class Subscription extends BaseDataType
     {
         $this->properties['profile'] = $profile->toArray();
     }
+
+    public function addAmount(String $amount)
+    {
+        $this->properties['amount'] = $amount;
+    }
+
+    public function getAmount()
+    {
+        return $this->properties['amount'];
+    }
+
+    public function getInterval() {
+        return $this->properties['paymentSchedule']['interval'];
+    }
+
+    public function removeInterval()
+    {
+        unset($this->properties['paymentSchedule']['interval']);
+    }
 }
