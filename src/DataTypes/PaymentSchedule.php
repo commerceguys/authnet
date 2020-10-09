@@ -20,4 +20,8 @@ class PaymentSchedule extends BaseDataType
     {
         $this->properties['totalOccurrences'] = $totalOccurrences;
     }
+
+    public function addStartDate(string $startDate) {
+        $this->properties['startDate'] = $startDate;
+    }
 }

@@ -42,12 +42,12 @@ class Interval extends BaseDataType
         }
     }
 
-    public function addLength(int $length): void
+    public function addLength(int $length)
     {
         $this->propertyMap['length'] = $length;
     }
 
-    public function addUnit(String $unit): void
+    public function addUnit(String $unit)
     {
         $this->propertyMap['unit'] = $unit;
     }
