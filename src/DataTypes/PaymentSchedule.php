@@ -15,4 +15,13 @@ class PaymentSchedule extends BaseDataType
     {
         $this->properties['interval'] = $interval->toArray();
     }
+
+    public function addTotalOccurrences(String $totalOccurrences)
+    {
+        $this->properties['totalOccurrences'] = $totalOccurrences;
+    }
+
+    public function addStartDate(string $startDate) {
+        $this->properties['startDate'] = $startDate;
+    }
 }

@@ -16,14 +16,18 @@ class ARBUpdateSubscriptionRequest extends ARBCreateSubscriptionRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        $subscriptionId
+        Subscription $subscription,
+        string $subscriptionId
     ) {
-        parent::__construct($configuration, $client);
-        $this->subscriptionId = $subscription;
+        $this->subscriptionId = $subscriptionId;
+        // Authnet does not allow an interval to be updated
+        $subscription->removeInterval();
+        parent::__construct($configuration, $client, $subscription);
     }
 
     protected function attachData(RequestInterface $request)
     {
         $request->addData('subscriptionId', $this->subscriptionId);
+        parent::attachData($request);
     }
 }

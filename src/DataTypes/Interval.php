@@ -23,7 +23,7 @@ class Interval extends BaseDataType
             throw new \InvalidArgumentException('Interval must have a unit.');
         }
         if (!array_intersect(['days', 'months'], (array) $values['unit'])) {
-            throw new \InvalidArgumentException('Interval unit must be days or months.');
+            throw new \InvalidArgumentException('Interval unit must be days or months.' . $values['unit']);
         }
         switch ($values['unit']) {
             case 'days':
@@ -40,5 +40,15 @@ class Interval extends BaseDataType
                 }
                 break;
         }
+    }
+
+    public function addLength(int $length)
+    {
+        $this->propertyMap['length'] = $length;
+    }
+
+    public function addUnit(String $unit)
+    {
+        $this->propertyMap['unit'] = $unit;
     }
 }
