@@ -12,7 +12,8 @@ jobs:
       matrix:
         php-version:
           - "7.4"
-          - "8.0"
+          # @todo need to bump phpunit for 8.0 testing
+          # - "8.0"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
