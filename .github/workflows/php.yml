@@ -1,0 +1,30 @@
+name: PHP
+on:
+  push:
+    branches:
+  pull_request:
+    branches:
+jobs:
+  tests:
+    runs-on: "ubuntu-latest"
+    name: "Tests | PHP ${{ matrix.php-version }}
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+          - "8.0"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "none"
+          php-version: "${{ matrix.php-version }}"
+          tools: composer:v2
+      - name: "Install dependencies"
+        run: "composer update --no-progress --prefer-dist"
+      - name: "PHPCS"
+        run: "php vendor/bin/phpcs src"
+      - name: "PHPUnit"
+        run: "php vendor/bin/phpunit"
