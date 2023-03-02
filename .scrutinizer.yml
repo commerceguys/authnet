@@ -14,10 +14,9 @@ filter:
     paths:
         - src/*
 build:
-    tests:
-        override:
-            -
-                command: phpunit --coverage-clover=my-coverage-file
-                coverage:
-                    file: my-coverage-file
-                    format: php-clover
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    - phpcs-run
