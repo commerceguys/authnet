@@ -1,7 +1,7 @@
 Authorize.net PHP SDK
 =====================
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master) [![Build Status](https://travis-ci.org/commerceguys/authnet.svg?branch=master)](https://travis-ci.org/commerceguys/authnet) [![Code Coverage](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master) [![Packagist](https://img.shields.io/packagist/dm/commerceguys/authnet.svg)](https://packagist.org/packages/commerceguys/authnet)[![Packagist](https://img.shields.io/packagist/v/commerceguys/authnet.svg)](https://packagist.org/packages/commerceguys/authnet)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master) [![Build Status](https://github.com/commerceguys/authnet/actions/workflows/build.yml/badge.svg)](https://github.com/commerceguys/authnet/actions/workflows/build.yml) [![Code Coverage](https://scrutinizer-ci.com/g/commerceguys/authnet/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/commerceguys/authnet/?branch=master) [![Packagist](https://img.shields.io/packagist/dm/commerceguys/authnet.svg)](https://packagist.org/packages/commerceguys/authnet)[![Packagist](https://img.shields.io/packagist/v/commerceguys/authnet.svg)](https://packagist.org/packages/commerceguys/authnet)
 
 An SDK for Authorize.net, using Guzzle.
 
