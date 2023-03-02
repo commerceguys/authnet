@@ -2,7 +2,7 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  run-test-php7.3:
+  run-test-php73:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
         env:
           XDEBUG_MODE: coverage
 
-  run-test-php8.1:
+  run-test-php81:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
