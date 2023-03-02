@@ -2,12 +2,14 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  build-test:
+  run-test-php7.3:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-      - uses: php-actions/composer@v6
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "7.3"
 
       - name: PHPUnit Tests PHP 7.3
         uses: php-actions/phpunit@master
@@ -15,31 +17,28 @@ jobs:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml.dist
           args: --coverage-text
-          php_extensions: xdebug bcmath
+          php_extensions: xdebug
           php_version: 7.3
           version: 9
         env:
           XDEBUG_MODE: coverage
 
-      - name: PHPUnit Tests PHP 8.0
-        uses: php-actions/phpunit@master
+  run-test-php8.1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: php-actions/composer@v6
         with:
-          bootstrap: vendor/autoload.php
-          configuration: phpunit.xml.dist
-          args: --coverage-text
-          php_extensions: xdebug bcmath
-          php_version: 8.0
-          version: 9
-        env:
-          XDEBUG_MODE: coverage
+          php_version: "8.1"
 
-      - name: PHPUnit Tests PHP 8.1
+      - name: PHPUnit Tests PHP 78.1
         uses: php-actions/phpunit@master
         with:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml.dist
           args: --coverage-text
-          php_extensions: xdebug bcmath
+          php_extensions: xdebug
           php_version: 8.1
           version: 9
         env:
