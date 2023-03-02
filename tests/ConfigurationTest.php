@@ -3,11 +3,12 @@
 namespace CommerceGuys\AuthNet\Tests;
 
 use CommerceGuys\AuthNet\Configuration;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests the configuration class.
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigurationTest extends TestCase
 {
     public function testConfiguration()
     {

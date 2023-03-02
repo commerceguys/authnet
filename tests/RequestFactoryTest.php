@@ -14,19 +14,15 @@ class RequestFactoryTest extends TestBase
 
     public function testInvalidServiceRequest()
     {
-        $this->setExpectedException(
-            \InvalidArgumentException::class,
-            "Request createNonExistantRequest does not exist"
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Request createNonExistantRequest does not exist");
         $this->xmlRequestFactory->createNonExistantRequest();
     }
 
     public function testNotInstanceOf()
     {
-        $this->setExpectedException(
-            \InvalidArgumentException::class,
-            "Request configuration is not a valid request"
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("Request configuration is not a valid request");
         $this->xmlRequestFactory->configuration();
     }
 }

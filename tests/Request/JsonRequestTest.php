@@ -6,8 +6,9 @@ use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\Configuration;
 use CommerceGuys\AuthNet\DataTypes\MerchantAuthentication;
 use CommerceGuys\AuthNet\Request\JsonRequest;
+use PHPUnit\Framework\TestCase;
 
-class JsonRequestTest extends \PHPUnit_Framework_TestCase
+class JsonRequestTest extends TestCase
 {
     /**
      * @var \CommerceGuys\AuthNet\Configuration
@@ -18,7 +19,7 @@ class JsonRequestTest extends \PHPUnit_Framework_TestCase
      */
     protected $client;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->configuration = new Configuration([

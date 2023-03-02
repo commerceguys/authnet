@@ -13,14 +13,14 @@ An SDK for Authorize.net, using Guzzle.
 
 ## Dependencies
 
-PHP version >= 5.5.0 is required.
+PHP version >= 7.3 is required.
 
 The following PHP extensions are required:
 * json
 * simplexml
 * xmlwrite
 
-This library also uses Guzzle 6.
+This library uses Guzzle, v6 minimum.
 
 ## Testing
 

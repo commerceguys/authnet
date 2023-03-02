@@ -6,11 +6,12 @@ use CommerceGuys\AuthNet\DataTypes\CreditCard;
 use CommerceGuys\AuthNet\DataTypes\Interval;
 use CommerceGuys\AuthNet\DataTypes\LineItem;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests Intervals.
  */
-class IntervalTest extends \PHPUnit_Framework_TestCase
+class IntervalTest extends TestCase
 {
 
     /**
@@ -18,8 +19,9 @@ class IntervalTest extends \PHPUnit_Framework_TestCase
      */
     public function testMissingLength()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Interval must have a length.');
-        $interval = new Interval();
+        $this->expectExceptionMessage('Interval must have a length.');
+        $this->expectException(\InvalidArgumentException::class);
+        new Interval();
     }
 
     /**
@@ -27,8 +29,9 @@ class IntervalTest extends \PHPUnit_Framework_TestCase
      */
     public function testMissingUnit()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Interval must have a unit.');
-        $interval = new Interval(['length' => '1']);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Interval must have a unit.');
+        new Interval(['length' => '1']);
     }
 
     /**
@@ -36,8 +39,9 @@ class IntervalTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidUnit()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Interval unit must be days or months.');
-        $interval = new Interval(['length' => '1', 'unit' => 'foo']);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Interval unit must be days or months.');
+        new Interval(['length' => '1', 'unit' => 'foo']);
     }
 
     /**
@@ -45,8 +49,9 @@ class IntervalTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnitDays()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Interval length for days must be between 7 and 365, inclusive.');
-        $interval = new Interval(['length' => '1', 'unit' => 'days']);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Interval length for days must be between 7 and 365, inclusive.');
+        new Interval(['length' => '1', 'unit' => 'days']);
     }
 
     /**
@@ -54,7 +59,8 @@ class IntervalTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnitMonths()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Interval length for months must be between 1 and 12, inclusive.');
-        $interval = new Interval(['length' => '13', 'unit' => 'months']);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Interval length for months must be between 1 and 12, inclusive.');
+        new Interval(['length' => '13', 'unit' => 'months']);
     }
 }

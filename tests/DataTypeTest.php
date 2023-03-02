@@ -12,7 +12,7 @@ class DataTypeTest extends TestBase
         // Tests methods provided by \CommerceGuys\AuthNet\DataTypes\BaseDataType
         $creditCard = new CreditCard([
             'cardNumber' => '4111111111111111',
-            'expirationDate' => '2020-12',
+            'expirationDate' => '2025-12',
         ]);
         unset($creditCard->cardNumber);
         $this->assertTrue(!isset($creditCard->cardNumber));
@@ -22,13 +22,15 @@ class DataTypeTest extends TestBase
 
     public function testMessageValidationCode()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Messages must have a code');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Messages must have a code');
         new Message(['message' => 'Test']);
     }
 
     public function testMessageValidationTest()
     {
-        $this->setExpectedException(\InvalidArgumentException::class, 'Messages must have a text');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Messages must have a text');
         new Message(['code' => 'I00122']);
     }
 }

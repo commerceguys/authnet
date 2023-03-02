@@ -7,7 +7,6 @@ use CommerceGuys\AuthNet\DataTypes\MerchantAuthentication;
 use CommerceGuys\AuthNet\Request\JsonRequest;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 use CommerceGuys\AuthNet\Request\XmlRequest;
-use CommerceGuys\AuthNet\Response\JsonResponse;
 
 abstract class BaseApiRequest implements ApiRequestInterface
 {

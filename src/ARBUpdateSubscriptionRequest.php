@@ -3,7 +3,6 @@
 namespace CommerceGuys\AuthNet;
 
 use GuzzleHttp\Client;
-use CommerceGuys\AuthNet\DataTypes\Subscription;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
 /**
@@ -19,7 +18,7 @@ class ARBUpdateSubscriptionRequest extends ARBCreateSubscriptionRequest
         $subscriptionId
     ) {
         parent::__construct($configuration, $client);
-        $this->subscriptionId = $subscription;
+        $this->subscriptionId = $subscriptionId;
     }
 
     protected function attachData(RequestInterface $request)

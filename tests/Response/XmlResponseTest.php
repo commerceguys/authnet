@@ -3,10 +3,10 @@
 namespace CommerceGuys\AuthNet\Tests\Response;
 
 use GuzzleHttp\Psr7\Response;
-use CommerceGuys\AuthNet\Response\JsonResponse;
 use CommerceGuys\AuthNet\Response\XmlResponse;
+use PHPUnit\Framework\TestCase;
 
-class XmlResponseTest extends \PHPUnit_Framework_TestCase
+class XmlResponseTest extends TestCase
 {
     public function testXmlResponse()
     {

@@ -6,8 +6,9 @@ use CommerceGuys\AuthNet\Response\ResponseInterface;
 use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\Configuration;
 use CommerceGuys\AuthNet\RequestFactory;
+use PHPUnit\Framework\TestCase;
 
-abstract class TestBase extends \PHPUnit_Framework_TestCase
+abstract class TestBase extends TestCase
 {
     /**
      * @var \CommerceGuys\AuthNet\Configuration
@@ -34,7 +35,7 @@ abstract class TestBase extends \PHPUnit_Framework_TestCase
      */
     protected $jsonRequestFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->configurationXml = new Configuration([

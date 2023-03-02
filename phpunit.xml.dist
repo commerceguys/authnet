@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" verbose="true" colors="true">
-
-    <testsuites>
-        <testsuite name="AutheNet Tests">
-            <directory>./tests</directory>
-        </testsuite>
-    </testsuites>
-
-    <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false" lowUpperBound="50" highLowerBound="80" />
-        <log type="coverage-clover" target="./clover.xml" />
-    </logging>
-
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./src</directory>
-            <exclude>
-                <directory>./vendor</directory>
-                <directory>./tests</directory>
-                <directory>./build</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-
-    <php>
-        <const name="PHPUNIT_TESTSUITE" value="true" />
-        <!-- Enter your test account credentials to run tests against sandbox. -->
-        <const name="AUTHORIZENET_API_LOGIN_ID" value="5KP3u95bQpv" />
-        <const name="AUTHORIZENET_TRANSACTION_KEY" value="346HZ32z3fP4hTG2" />
-        <const name="AUTHORIZENET_MD5_SETTING" value="" />
-        <!-- Path to certificate, or `true` to use system certificates. -->
-        <const name="TESTS_CERTIFICATE_VERIFY" value="resources/cert.pem" />
-    </php>
-
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./tests/bootstrap.php" verbose="true" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <exclude>
+      <directory>./vendor</directory>
+      <directory>./tests</directory>
+      <directory>./build</directory>
+    </exclude>
+    <report>
+      <clover outputFile="./clover.xml"/>
+      <text outputFile="php://stdout" showUncoveredFiles="false"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="AutheNet Tests">
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
+  <logging/>
+  <php>
+    <const name="PHPUNIT_TESTSUITE" value="true"/>
+    <!-- Enter your test account credentials to run tests against sandbox. -->
+    <const name="AUTHORIZENET_API_LOGIN_ID" value="5KP3u95bQpv"/>
+    <const name="AUTHORIZENET_TRANSACTION_KEY" value="346HZ32z3fP4hTG2"/>
+    <const name="AUTHORIZENET_MD5_SETTING" value=""/>
+    <!-- Path to certificate, or `true` to use system certificates. -->
+    <const name="TESTS_CERTIFICATE_VERIFY" value="resources/cert.pem"/>
+  </php>
 </phpunit>

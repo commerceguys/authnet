@@ -7,32 +7,20 @@ use CommerceGuys\AuthNet\ARBCreateSubscriptionRequest;
 use CommerceGuys\AuthNet\ARBGetSubscriptionListRequest;
 use CommerceGuys\AuthNet\ARBGetSubscriptionRequest;
 use CommerceGuys\AuthNet\ARBGetSubscriptionStatusRequest;
-use CommerceGuys\AuthNet\CreateCustomerProfileRequest;
-use CommerceGuys\AuthNet\DataTypes\BillTo;
-use CommerceGuys\AuthNet\DataTypes\CreditCard;
 use CommerceGuys\AuthNet\DataTypes\CustomerProfileId;
 use CommerceGuys\AuthNet\DataTypes\Interval;
-use CommerceGuys\AuthNet\DataTypes\OpaqueData;
-use CommerceGuys\AuthNet\DataTypes\Order;
 use CommerceGuys\AuthNet\DataTypes\Paging;
-use CommerceGuys\AuthNet\DataTypes\PaymentProfile;
 use CommerceGuys\AuthNet\DataTypes\PaymentSchedule;
-use CommerceGuys\AuthNet\DataTypes\Profile;
 use CommerceGuys\AuthNet\DataTypes\Sorting;
 use CommerceGuys\AuthNet\DataTypes\Subscription;
-use CommerceGuys\AuthNet\DataTypes\SubscriptionRequest;
-use CommerceGuys\AuthNet\DeleteCustomerProfileRequest;
-use CommerceGuys\AuthNet\GetCustomerProfileIdsRequest;
-use CommerceGuys\AuthNet\GetCustomerProfileRequest;
-use CommerceGuys\AuthNet\UpdateCustomerProfileRequest;
 
 class ARBCreateSubscriptionRequestTest extends TestBase
 {
     public function testARBCreateSubscriptionRequestCRUD()
     {
-        $interval = new Interval(['length' => 1, 'unit' => 'months']);
+        $interval = new Interval(['length' => 7, 'unit' => 'days']);
         $paymentSchedule = new PaymentSchedule([
-            'startDate' => '2018-08-30',
+            'startDate' => '2024-08-30',
             'totalOccurrences' => 9999,
         ]);
         $paymentSchedule->addInterval($interval);
@@ -46,9 +34,11 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         $request = new ARBCreateSubscriptionRequest($this->configurationXml, $this->client, $subscription);
         $request->setSubscription($subscription);
         $response = $request->execute();
-        $this->assertObjectHasAttribute('profile', $response->contents());
+        $response_contents = $response->contents();
+        $this->assertIsObject($response_contents);
+        $this->assertTrue(property_exists($response_contents, 'profile'));
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
-        $subscriptionId = $response->contents()->subscriptionId;
+        $subscriptionId = $response_contents->subscriptionId;
         // Test Get.
         $get = new ARBGetSubscriptionRequest($this->configurationXml, $this->client, $subscriptionId);
         $response = $get->execute();
@@ -64,20 +54,22 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         // Retrieve a list of subscriptions.
         $sorting = new Sorting([
             'orderBy' => 'id',
-            'orderDescending' => false,
+            'orderDescending' => true,
         ]);
         $paging = new Paging([
-            'limit' => 100,
+            'limit' => 50,
             'offset' => 1,
         ]);
         $request = new ARBGetSubscriptionListRequest($this->configurationXml, $this->client, 'subscriptionActive');
         $request->setSorting($sorting);
         $request->setPaging($paging);
         $response = $request->execute();
-        $this->assertObjectHasAttribute('totalNumInResultSet', $response->contents());
+        $response_contents = $response->contents();
+        $this->assertIsObject($response_contents);
+        $this->assertTrue(property_exists($response_contents, 'totalNumInResultSet'));;
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         // If something has caused a lot of built-up subscriptions, remove them.
-        if ($response->contents()->totalNumInResultSet > 100) {
+        if ($response_contents->totalNumInResultSet > 100) {
             $this->cleanupSubscriptions();
         }
     }
@@ -87,6 +79,7 @@ class ARBCreateSubscriptionRequestTest extends TestBase
         $request = new ARBGetSubscriptionListRequest($this->configurationXml, $this->client, 'subscriptionActive');
         $response = $request->execute();
         $contents = $response->contents();
+        $canceled_count = 0;
         while ($contents->totalNumInResultSet) {
             $subscriptions = $contents->subscriptionDetails->subscriptionDetail;
             if (!is_array($subscriptions)) {
@@ -96,6 +89,11 @@ class ARBCreateSubscriptionRequestTest extends TestBase
                 $cancel = new ARBCancelSubscriptionRequest($this->configurationXml, $this->client, $subscription->id);
                 $response = $cancel->execute();
                 $this->assertEquals('Ok', $response->getResultCode());
+                $canceled_count++;
+                // Stop after canceling 100 subscriptions.
+                if ($canceled_count > 100) {
+                    break 2;
+                }
             }
             $response = $request->execute();
             $contents = $response->contents();

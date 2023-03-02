@@ -39,9 +39,10 @@ class CustomerProfileRequestTest extends TestBase
           'country' => 'US',
           'phoneNumber' => '5555555555',
         ]));
+        $nextYear = ((int) date('Y')) + 1;
         $paymentProfile->addPayment(new CreditCard([
           'cardNumber' => '4111111111111111',
-          'expirationDate' => '2020-12',
+          'expirationDate' => "$nextYear-12",
         ]));
 
         $profile = new Profile([

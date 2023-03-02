@@ -51,9 +51,10 @@ class CustomerPaymentProfileRequestTest extends TestBase
             'country' => 'US',
             'phoneNumber' => '5555555555',
         ]));
+        $nextYear = ((int) date('Y')) + 1;
         $paymentProfile->addPayment(new CreditCard([
             'cardNumber' => '4111111111111111',
-            'expirationDate' => '2020-12',
+            'expirationDate' => "$nextYear-12",
         ]));
 
         $request->setPaymentProfile($paymentProfile);
@@ -83,7 +84,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         $response = $request->execute();
         $this->assertEquals('I00001', $response->getMessages()[0]->getCode());
         $this->assertEquals('XXXX1111', $response->paymentProfile->payment->creditCard->cardNumber);
-        $this->assertEquals('2020-12', $response->paymentProfile->payment->creditCard->expirationDate);
+        $this->assertEquals("$nextYear-12", $response->paymentProfile->payment->creditCard->expirationDate);
 
         $request = new ValidateCustomerPaymentProfileRequest($this->configurationXml, $this->client);
         $request->setCustomerProfileId($customerProfileId);
@@ -112,7 +113,7 @@ class CustomerPaymentProfileRequestTest extends TestBase
         // ]));
         $paymentProfile->addPayment(new CreditCard([
           'cardNumber' => 'XXXX1111',
-          'expirationDate' => '2022-06',
+          'expirationDate' => "$nextYear-06",
         ]));
         $request->setPaymentProfile($paymentProfile);
         $request->setValidationMode('none');

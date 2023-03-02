@@ -5,11 +5,12 @@ namespace CommerceGuys\AuthNet\Tests\DataType;
 use CommerceGuys\AuthNet\DataTypes\CreditCard;
 use CommerceGuys\AuthNet\DataTypes\LineItem;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests the transaction request
  */
-class TransactionRequestTest extends \PHPUnit_Framework_TestCase
+class TransactionRequestTest extends TestCase
 {
 
     /**

@@ -2,7 +2,6 @@
 
 namespace CommerceGuys\AuthNet;
 
-use GuzzleHttp\Client;
 use CommerceGuys\AuthNet\Request\RequestInterface;
 
 /**
