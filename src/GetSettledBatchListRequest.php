@@ -13,11 +13,11 @@ use CommerceGuys\AuthNet\Request\RequestInterface;
 class GetSettledBatchListRequest extends BaseApiRequest
 {
 
-  protected $includeStatistics;
+    protected $includeStatistics;
 
-  protected $firstSettlementDate;
+    protected $firstSettlementDate;
 
-  protected $lastSettlementDate;
+    protected $lastSettlementDate;
 
     public function __construct(
         Configuration $configuration,
