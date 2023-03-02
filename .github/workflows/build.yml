@@ -19,6 +19,7 @@ jobs:
           args: --coverage-text
           php_extensions: xdebug
           php_version: 7.3
+          memory_limit: "192M"
           version: 9
         env:
           XDEBUG_MODE: coverage
@@ -40,6 +41,7 @@ jobs:
           args: --coverage-text
           php_extensions: xdebug
           php_version: 8.1
+          memory_limit: "192M"
           version: 9
         env:
           XDEBUG_MODE: coverage

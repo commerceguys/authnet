@@ -90,8 +90,8 @@ class ARBCreateSubscriptionRequestTest extends TestBase
                 $response = $cancel->execute();
                 $this->assertEquals('Ok', $response->getResultCode());
                 $canceled_count++;
-                // Stop after canceling 100 subscriptions.
-                if ($canceled_count > 100) {
+                // Stop after canceling 50 subscriptions.
+                if ($canceled_count > 50) {
                     break 2;
                 }
             }
