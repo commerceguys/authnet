@@ -23,7 +23,7 @@ class Subscription extends BaseDataType
 
     public function addPayment(PaymentMethodInterface $payment)
     {
-        $this->properties['payment'] = $payment->toArray();
+        $this->properties['payment'][$payment->getType()] = $payment->toArray();
     }
 
     public function addOrder(Order $order)
