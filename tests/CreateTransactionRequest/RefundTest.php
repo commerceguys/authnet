@@ -3,7 +3,9 @@
 namespace CommerceGuys\AuthNet\Tests\CreateTransactionRequest;
 
 use CommerceGuys\AuthNet\DataTypes\CreditCard;
+use CommerceGuys\AuthNet\DataTypes\Customer;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
+
 
 class RefundTest extends CreateTransactionRequestTestBase
 {
@@ -30,6 +32,9 @@ class RefundTest extends CreateTransactionRequestTestBase
         $transactionRequest->addPayment(new CreditCard([
             'cardNumber' => 'XXXX1111',
             'expirationDate' => 'XXXX',
+        ]));
+        $transactionRequest->addDataType(new Customer([
+            'email' => 'bojangles@example.net',
         ]));
 
         sleep(4);
