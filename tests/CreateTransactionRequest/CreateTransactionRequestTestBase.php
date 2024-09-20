@@ -6,6 +6,7 @@ use CommerceGuys\AuthNet\Tests\TestBase;
 use CommerceGuys\AuthNet\DataTypes\Order;
 use CommerceGuys\AuthNet\DataTypes\CreditCard;
 use CommerceGuys\AuthNet\DataTypes\BankAccount;
+use CommerceGuys\AuthNet\DataTypes\Customer;
 use CommerceGuys\AuthNet\DataTypes\TransactionRequest;
 
 abstract class CreateTransactionRequestTestBase extends TestBase {
@@ -31,6 +32,9 @@ abstract class CreateTransactionRequestTestBase extends TestBase {
     $transactionRequest->addOrder(new Order([
       'invoiceNumber' => 'INV-' . rand(10, 100),
     ]));
+    $transactionRequest->addDataType(new Customer([
+      'email' => 'bojangles@example.net',
+  ]));
 
     return $transactionRequest;
   }
