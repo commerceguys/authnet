@@ -20,7 +20,7 @@ class ARBCreateSubscriptionRequestTest extends TestBase
     {
         $interval = new Interval(['length' => 7, 'unit' => 'days']);
         $paymentSchedule = new PaymentSchedule([
-            'startDate' => '2024-08-30',
+            'startDate' => (new \DateTime('+1 day'))->format('Y-m-d'),
             'totalOccurrences' => 9999,
         ]);
         $paymentSchedule->addInterval($interval);
