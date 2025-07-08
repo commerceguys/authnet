@@ -59,6 +59,7 @@ class CustomerProfileRequestTest extends TestBase
         $this->assertTrue(isset($response->validationDirectResponseList));
 
         $request = new GetCustomerProfileRequest($this->configurationXml, $this->client, $response->customerProfileId);
+        $request->setUnmaskExpirationDate(false);
         $response = $request->execute();
         $this->assertResponse($response, 'I00001', 'Successful.', 'Ok');
         $this->assertTrue(isset($response->profile));
