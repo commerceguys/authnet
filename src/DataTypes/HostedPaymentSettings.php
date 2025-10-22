@@ -17,4 +17,18 @@ class HostedPaymentSettings extends BaseDataType
     {
         $this->properties[] = ['setting' => $setting->toArray()];
     }
+
+    /**
+     * Removes setting from the hosted payment configuration.
+     *
+     * @param string $name
+     */
+    public function removeSetting(string $name): void
+    {
+        foreach ($this->properties as $key => $property) {
+            if ($property['setting']['settingName'] == $name) {
+                unset($this->properties[$key]);
+            }
+        }
+    }
 }
