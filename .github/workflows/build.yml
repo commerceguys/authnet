@@ -2,28 +2,6 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  run-test-php73:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: "7.3"
-
-      - name: PHPUnit Tests PHP 7.3
-        uses: php-actions/phpunit@master
-        with:
-          bootstrap: vendor/autoload.php
-          configuration: phpunit.xml.dist
-          args: --coverage-text
-          php_extensions: xdebug
-          php_version: 7.3
-          memory_limit: "192M"
-          version: 9
-        env:
-          XDEBUG_MODE: coverage
-
   run-test-php81:
     runs-on: ubuntu-latest
     steps:
@@ -41,6 +19,72 @@ jobs:
           args: --coverage-text
           php_extensions: xdebug
           php_version: 8.1
+          memory_limit: "192M"
+          version: 9
+        env:
+          XDEBUG_MODE: coverage
+
+  run-test-php82:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.2"
+
+      - name: PHPUnit Tests PHP 78.1
+        uses: php-actions/phpunit@master
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml.dist
+          args: --coverage-text
+          php_extensions: xdebug
+          php_version: 8.2
+          memory_limit: "192M"
+          version: 9
+        env:
+          XDEBUG_MODE: coverage
+
+  run-test-php83:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.3"
+
+      - name: PHPUnit Tests PHP 78.1
+        uses: php-actions/phpunit@master
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml.dist
+          args: --coverage-text
+          php_extensions: xdebug
+          php_version: 8.3
+          memory_limit: "192M"
+          version: 9
+        env:
+          XDEBUG_MODE: coverage
+
+  run-test-php84:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.4"
+
+      - name: PHPUnit Tests PHP 78.1
+        uses: php-actions/phpunit@master
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml.dist
+          args: --coverage-text
+          php_extensions: xdebug
+          php_version: 8.4
           memory_limit: "192M"
           version: 9
         env:
