@@ -13,6 +13,7 @@ use CommerceGuys\AuthNet\Request\RequestInterface;
 class GetCustomerProfileRequest extends BaseApiRequest
 {
     protected $customerProfileId;
+    protected $unmaskExpirationDate = false;
 
     public function __construct(
         Configuration $configuration,
@@ -23,8 +24,19 @@ class GetCustomerProfileRequest extends BaseApiRequest
         $this->customerProfileId = $customerProfileId;
     }
 
-    protected function attachData(RequestInterface $request)
+    /**
+     * @param boolean $unmaskExpirationDate
+     */
+    public function setUnmaskExpirationDate($unmaskExpirationDate)
+    {
+       $this->unmaskExpirationDate = $unmaskExpirationDate;
+    }
+
+	protected function attachData(RequestInterface $request)
     {
         $request->addData('customerProfileId', $this->customerProfileId);
+        if ($this->unmaskExpirationDate) {
+            $request->addData('unmaskExpirationDate', $this->unmaskExpirationDate);
+        }
     }
 }
