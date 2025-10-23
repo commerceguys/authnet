@@ -16,7 +16,7 @@ class ARBCreateSubscriptionRequest extends ARBSubscriptionRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        Subscription $subscription = null
+        ?Subscription $subscription = null
     ) {
         parent::__construct($configuration, $client);
         $this->subscription = $subscription;

@@ -39,8 +39,8 @@ class GetHostedPaymentPageRequest extends BaseApiRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        TransactionRequest $transactionRequest = null,
-        HostedPaymentSettings $hostedPaymentSettings = null
+        ?TransactionRequest $transactionRequest = null,
+        ?HostedPaymentSettings $hostedPaymentSettings = null
     ) {
         parent::__construct($configuration, $client);
         $this->transactionRequest = $transactionRequest;

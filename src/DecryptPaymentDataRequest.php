@@ -20,7 +20,7 @@ class DecryptPaymentDataRequest extends BaseApiRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        OpaqueData $opaqueData = null,
+        ?OpaqueData $opaqueData = null,
         $refId,
         $callId
     ) {

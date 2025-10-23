@@ -18,7 +18,7 @@ class CreateTransactionRequest extends BaseApiRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        TransactionRequest $transactionRequest = null
+        ?TransactionRequest $transactionRequest = null
     ) {
         parent::__construct($configuration, $client);
         $this->transactionRequest = $transactionRequest;

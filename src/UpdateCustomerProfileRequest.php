@@ -18,7 +18,7 @@ class UpdateCustomerProfileRequest extends BaseApiRequest
     public function __construct(
         Configuration $configuration,
         Client $client,
-        Profile $profile = null
+        ?Profile $profile = null
     ) {
         parent::__construct($configuration, $client);
         $this->profile = $profile;
